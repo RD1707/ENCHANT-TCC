@@ -8,8 +8,21 @@
     font-family: "Lexend Deca", sans-serif;
 }
 
+/* ADICIONADO: Configuração para footer sticky */
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ADICIONADO: Container principal que cresce */
+.main-content {
+    flex: 1;
 }
 
 h1 {
@@ -20,8 +33,29 @@ h1 {
     font-size: 32px;
 }
 
+footer {
+    margin-left: -52px;
+    margin-top: auto; /* Mantém o footer no final */
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+    footer {
+        margin-left: 0px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .sidebar {
+        overflow: hidden !important;
+    }
+    
+    footer {
+        margin-left: 0px;
+    }
+}
+
 .container {
-    padding: 30px;
+    margin-top: 10px;
 }
 
 .section {
@@ -36,8 +70,7 @@ h1 {
     background-color: transparent;
 }
 
-.editable-title,
-.editable-content {
+.editable-title, .editable-content {
     width: 100%;
     border: 1px solid #ddd;
     padding: 8px;
@@ -46,8 +79,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.editable-title::placeholder,
-.editable-content::placeholder {
+.editable-title::placeholder, .editable-content::placeholder {
     color: rgba(139, 69, 19, 0.4);
 }
 
@@ -114,4 +146,3 @@ img.imagem-salva {
     margin-top: 10px;
     border-radius: 8px;
 }
-
