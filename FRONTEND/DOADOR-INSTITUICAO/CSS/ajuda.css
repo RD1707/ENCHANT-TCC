@@ -11,6 +11,7 @@ body {
     margin: 50px auto;
     padding: 0 150px;
   }
+
   
   h1 {
     font-family: 'Passion One', cursive;
@@ -122,6 +123,7 @@ body {
   }
   
   @media (max-width: 1024px) {
+
     .container {
       padding: 0 80px;
     }

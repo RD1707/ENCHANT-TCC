@@ -26,7 +26,7 @@
 
 <body>
 
-    <header>
+<header>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <!-- Botão esquerdo para controlar a sidebar -->
@@ -38,6 +38,8 @@
       >
         <i style="font-size: 12px" class="navbar-toggler-icon"></i>
       </button>
+
+
 
 
       <!-- Input File -->
@@ -52,6 +54,8 @@
           placeholder="Insira sua logo"
         />
       </button>
+
+
 
 
       <!-- Botão direito para outras funcionalidades -->
@@ -69,10 +73,10 @@
       <div class="collapse navbar-collapse item" id="navbarNav">
         <ul id="abcd" class="navbar-nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" href="quemsomos2.html">Quem somos?</a>
+            <a class="nav-link" href="#">Quem somos?</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="saibamais2.html">Saiba mais</a>
+            <a class="nav-link" href="#">Saiba mais</a>
           </li>
           <li class="nav-item profile-dropdown">
             <button
@@ -85,26 +89,27 @@
                 src=""
                 alt="Foto do Usuário"
                 style="
-                  width: 40px;
-                  height: 40px;
+                  width: 30px;
+                  height: 30px;
                   border-radius: 50%;
                   object-fit: cover;
                   display: none;
                 "
               />
-              <i
-                id="userIcon"
+              <i id="userIcon"
                 class="bi bi-person-circle"
-                style="font-size: 35px; color: #ccc"
+                style="
+                font-size: 250%;
+                color: #ccc"
               ></i>
               <span>Nome do Usuário</span>
             </button>
             <!-- Dropdown menu movido para dentro do item de lista -->
-            <div id="dropzinho" class="dropdown-menu">
-              <a class="dropdown-item" href="perfilcomprador.html"
+            <div id = "dropzinho" class= "dropdown-menu" >
+              <a class="dropdown-item" href="perfilinstituicao.html"
                 ><i class="bi bi-person"></i> Perfil</a
               >
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" href="inicio1.html"
                 ><i class="bi bi-box-arrow-right"></i> Sair</a
               >
             </div>
@@ -117,117 +122,30 @@
     <div class="page-content">
       <aside class="sidebar" id="sidebar">
         <nav>
-          <a href="#"><i class="bi bi-list"></i><span></span></a>
-          <a href="mapa.html"
-            ><i class="bi bi-map"></i
+          <a href="#"><i class="bi bi-list" id="bb"></i><span></span></a>
+          <a href="mapaonginst.html"
+            ><i class="bi bi-map" id="bb"></i
             ><span style="font-size: 14px">Mapa</span></a
           >
-          <a href="pontosdeabrigo.html"
-            ><i class="bi bi-geo"></i
-            ><span style="font-size: 14px">Pontos de abrigo</span></a
-          >
-          <a href="ajudamedica.html"
-            ><i class="bi bi-truck"></i
+    
+          <a href="ajudamedicaonginst.html"
+            ><i class="bi bi-truck" id="bb"></i
             ><span style="font-size: 14px">Ajuda médica</span></a
           >
-          <a href="doacao.html"
-            ><i class="bi bi-box"></i
+          <a href="doacaoonginst.html"
+            ><i class="bi bi-box" id="bb"></i
             ><span style="font-size: 14px">Doação</span></a
           >
-          <a href="pontosdecoleta.html"
-            ><i class="bi bi-geo-alt-fill"></i
+          <a href="pontosdecoletaonginst.html"
+            ><i class="bi bi-geo-alt-fill" id="bb"></i
             ><span style="font-size: 14px">Pontos de coleta</span></a
           >
-          <a href="historicodoacoes.html"
-            ><i class="bi bi-journal"></i
-            ><span style="font-size: 14px">Histórico de doação</span></a
-          >
-          <a href="politica2.html"
-            ><i class="bi bi-file-earmark"></i
-            ><span style="font-size: 14px">Política de privacidade</span></a
-          >
-          <a href="ajuda.html"
-            ><i class="bi bi-info-circle"></i
+          <a href="ajudaonginst.html"
+            ><i class="bi bi-info-circle" id="bb"></i
             ><span style="font-size: 14px">Ajuda</span></a
           >
         </nav>
       </aside>
-
-
-      <div id="caixa-principal">
-        <div id="coisas-caixa">
-          <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              padding: 1.5rem;
-              height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="instagramgeral">
-            <h2 id="texto-caixa">Insira aqui o Instagram da sua empresa</h2>
-            <h2 id="texto-caixa3">
-              Aqui você pode inserir o Instagram da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="instagram"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-
-
-            <div id="confirmar">
-              <button id="botaocaixa" onclick="gerarLinkInstagram()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer"></div>
-            <button id="editarLink" style="display: none">Editar</button>
-          </div>
-        </div>
-      </div>
-
-
-      <div id="caixa-principal2">
-        <div id="coisas-caixa2">
-          <div
-            style="
-              display: flex;
-              justify-content: flex-start;
-              padding: 1.5rem;
-              height: 80px;
-            "
-          >
-            <button class="botao-sair" id="botao-sair2">
-              <i class="bi bi-x-circle"></i>
-            </button>
-          </div>
-          <div id="facebookgeral">
-            <h2 id="texto-caixa2">Insira aqui o Facebook da sua empresa</h2>
-            <h2 id="texto-caixa4">
-              Aqui você pode inserir o Facebook da sua empresa!
-            </h2>
-            <hr style="margin-top: 1px" />
-            <input
-              type="text"
-              id="facebook2"
-              placeholder="Digite seu @ ou nome de usuário"
-            />
-            <div id="confirmar2">
-              <button id="botaocaixa2" onclick="gerarLinkFacebook()">
-                Confirmar
-              </button>
-            </div>
-            <div id="linkContainer2"></div>
-            <button id="editarLink2" style="display: none">Editar</button>
-          </div>
-        </div>
-      </div>
 
   <main>
     <div class="page-header">
@@ -433,7 +351,7 @@
     </section>
   </main>
 
-    <footer>
+     <footer>
       <div class="footer-container">
         <!-- Logo e descrição -->
         <div class="footer-left">
@@ -468,12 +386,10 @@
             <h3>PROTEÇÃO DE DADOS</h3>
             <a href="politica1.html">Política de privacidade</a>
           </div>
-          <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
+           <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
             <h3>ACOMPANHE NOSSAS REDES</h3>
-
-
-            <button id="botao">Instagram</button>
-            <button id="facebook">Facebook</button>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Linkedn</a>
           </div>
         </div>
       </div>

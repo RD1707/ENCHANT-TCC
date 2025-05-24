@@ -138,6 +138,7 @@ border-radius: 5px;
 cursor: pointer;
 width: 220px;
 z-index: 800;
+height: 38px;
 }
 
 .upload-btn input {
