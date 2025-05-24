@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="saibamaiscomprador.css">
+</head>
+<body>
+
+    <div class="container" id="container">
+        <div class="content">
+            <h1>Saiba mais</h1>
+            <div class="grid-container" id="gridContainer">
+                <div id="sections-container">
+                    <div class="section">
+                        <input class="editable-title" placeholder="Adicione o título…">
+                        <textarea class="editable-content" placeholder="Adicione o texto..."></textarea>
+                        <input type="file" class="input-imagem">
+                        <div class="texto-salvo" style="display: none;">
+                            <h2 class="titulo-salvo"></h2>
+                            <p class="conteudo-salvo"></p>
+                            <img class="imagem-salva" style="max-width:100%; display: none;">
+                        </div>
+                    </div>
+                </div>
+                <button class="botao-salvar-container" id="btnAdd" onclick="addSection()">+</button>
+            </div>
+        </div>
+    </div>
+
+    <button class="botao-salvar" id="btnSalvar" onclick="salvar()">Salvar</button>
+    <button class="botao-salvar" id="btnEditar" style="display: none;" onclick="editar()">Editar</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
