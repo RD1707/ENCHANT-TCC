@@ -30,7 +30,7 @@ Este projeto avaliativo conta com a dedicação e o trabalho dos seguintes integ
 * **Andressa Cruz** 👩‍💻
 * **Camila Guimarães** 📝
 * **Guilherme Oliver** 💡
-* **Manuela Souza** ✍️
+* **Manuella Souza** ✍️
 * **Marcelle Abreu** 📊
 * **Marcos Henry** 📍
 
