@@ -626,8 +626,7 @@ footer-left img{
       border: none;
     }
   }
- 
-  /* Corrigido para não interferir com o comportamento do Bootstrap */
+
   @media (max-width: 991px) {
     .navbar-brand {
       margin-right: 0;
@@ -637,7 +636,6 @@ footer-left img{
       margin-right: 15px;
     }
    
-    /* Remove o alinhamento centralizado em telas menores */
     #conteudoNavbarSuportado {
       text-align: left !important;
     }
@@ -665,7 +663,6 @@ footer-left img{
       margin-right: auto;
     }
    
-    /* Garante que os itens de dropdown também fiquem alinhados à esquerda */
     .dropdown-menu {
       text-align: left;
       padding-left: 15px;
