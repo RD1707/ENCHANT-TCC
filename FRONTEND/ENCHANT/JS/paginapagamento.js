@@ -93,7 +93,7 @@ function validateCreditCardForm() {
     } else {
         // All validations passed, submit the form
         document.querySelector(".form-pagamento").submit();
-        window.location.href = "https://enchant-tcc.netlify.app"
+        window.location.href = "../index.html"
     }
 }
 
@@ -115,7 +115,7 @@ function validateDebitCardForm() {
     } else {
         // All validations passed, submit the form
         document.querySelector(".form-pagamento").submit();
-        window.location.href = "https://enchant-tcc.netlify.app"
+        window.location.href = "../index.html"
     }
 }
 
