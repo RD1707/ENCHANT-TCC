@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
     <link rel="stylesheet" href="../CSS/barraheadercomprador.css" />
-    <script src="../JS/pontosdeabrigo.js"></script>
+   
   </head>
   <body>
     <!-- Atualização da seção do navbar -->
@@ -253,8 +253,13 @@
                 <input class="input"type="text" id="localName" placeholder="Digite o nome do local...">
             </div>
             <div class="input-row">
-                <label class="label" for="openingHours">Horário de Funcionamento:</label>
-                <textarea class="textarea"id="openingHours" placeholder="Ex:9:00 às 21:00"></textarea>
+                <label  class="label" for="openingHours">Horário em que abre:</label>
+                <input  class="input" type="time" id="openingHours" placeholder="ex: 08:00">
+            </div>
+            
+            <div class="input-row">
+              <label class="label" for="closingHours">Horário em que fecha:</label>
+              <input class="input"  type="time" id="closingHours" placeholder="ex: 18:00">
             </div>
             <div class="input-row">
                 <label for="address" class="label">Endereço:</label>
@@ -342,7 +347,7 @@
 
    
 
-    <!-- Modal para mensagens - Atualizado com estilos do primeiro documento -->
+   
     <div class="modal fade" id="mensagemModal" tabindex="-1" aria-labelledby="mensagemModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
