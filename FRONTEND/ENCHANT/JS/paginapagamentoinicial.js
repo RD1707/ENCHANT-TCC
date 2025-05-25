@@ -96,5 +96,18 @@ function atualizarCidades(){
     }
 }
 document.getElementById("botao-continuar").addEventListener("click", function(){
-    window.location.href = "paginapagamento.html"
+    const nome = document.getElementById("nomecomprador").value;
+    const email = document.getElementById("email").value; 
+    const cnpj = String(document.getElementById("cnpj").value); 
+    const tel = String(document.getElementById("tel").value); 
+    const estado = document.getElementById("estado").value;
+    const cidade = document.getElementById("cidade").value;
+    const senha = document.getElementById("senha").value;
+    const confirmarSenha = document.getElementById("confirmarsenha").value;
+    if(nome === ""){
+        alert("Informe o nome da ONG/Instituição para prosseguir.")
+        event.preventDefault();
+    }else{
+        window.location.href = "paginapagamento.html"
+    }
 });
