@@ -110,6 +110,6 @@ document.getElementById("botao-continuar").addEventListener("click", function(){
         event.preventDefault();
     }else{
         console.log("Redirecionando para paginapagamento.html...");
-        window.location.href = "paginapagamento.html";
+        window.location.href = "../HTML/paginapagamento.html";
     }
 });
