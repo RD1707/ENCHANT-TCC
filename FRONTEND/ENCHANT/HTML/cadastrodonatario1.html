@@ -12,13 +12,13 @@
     <script src="../JS/cadastrodonatario1.js"></script>
 </head>
 <body>
-  <section>
+      <section>
     <header>
       <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Adicionando a imagem à esquerda da navbar -->
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="../../COMPRADOR/HTML/compradorantes.html">
           <img
-            src="./imagens/imagemprincipal.png"
+            src="../imagens/imagemprincipal.png"
             width="120"
             height="auto"
             alt="Logo"
@@ -38,21 +38,20 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
           <ul class="navbar-nav menu-lateral">
             <li class="nav-item">
-              <a id="quem" class="nav-link" href="quemsomos1.html" title="Quem somos"
+              <a id="quem" class="nav-link" href="../../COMPRADOR/HTML/quemsomos2antes.html" title="Quem somos"
                 >Quem somos?</a
               >
             </li>
             <li class="nav-item">
-              <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais"
+              <a id="saiba" class="nav-link" href="../../COMPRADOR/HTML/saibamais2antes.html" title="Saiba mais"
                 >Saiba mais
               </a>
             </li>
             <li class="nav-item">
-              <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
+              <a id="entrar" class="nav-link" href="../../COMPRADOR/HTML/entrarcomprador.html" title="Entrar">Entrar</a>
             </li>
             <li class="nav-item dropdown">
               <a
@@ -60,48 +59,37 @@
                 href="#"
                 id="navbarDropdown"
                 role="button"
-                data-bs-toggle="dropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
                 aria-expanded="false"
                 title="Cadastre-se"
               >
                 Cadastre-se
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <a
-                    id="dona1"
-                    class="dropdown-item"
-                    title="Cadastro do donatário"
-                    href="cadastrodonatario.html"
-                  >
-                    Cadastro Donatário
-                  </a>
-                </li>
-                <li>
-                  <a
-                    id="doap"
-                    class="dropdown-item"
-                    title="Cadastro do doador-pessoa"
-                    href="cadastrodoadorpessoa1.html"
-                  >
-                    Cadastro Doador-Pessoa
-                  </a>
-                </li>
-                <li>
-                  <a
-                    id="doain"
-                    class="dropdown-item"
-                    title="Cadastro do doador-instituição"
-                    href="cadastrodoadorinstituição1.html"
-                  >
-                    Cadastro Doador Instituição
-                  </a>
-                </li>
-              </ul>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a
+                  id="dona1"
+                  class="dropdown-item" title="Cadastro do donatário"
+                  href="../../ENCHANT/HTML/cadastrodonatario1.html"
+                  >Cadastro Donatário
+                </a>
+                <a
+                  id="doap"
+                  class="dropdown-item" title="Cadastro do doador-pessoa"
+                  href="../../ENCHANT/HTML/cadastrodoadorpessoa1.html"
+                  >Cadastro Doador-Pessoa
+                </a>
+                <a
+                  id="doain"
+                  class="dropdown-item" title="Cadastro do doador-instituição"
+                  href="../../ENCHANT/HTML/cadastrodoadorinstituição1.html"
+                  >Cadastro Doador Instituição</a
+                >
+              </div>
             </li>
           </ul>
-         
-          <a href="entrar1.html"><button class="btn btn-brown" type="button" id="doeagora">
+          <!-- O botão permanece inalterado -->
+          <a href="../../COMPRADOR/HTML/entrarcomprador.html"><button class="btn btn-brown" type="button" id="doeagora">
             Doe agora
           </button></a>
         </div>
@@ -515,7 +503,21 @@
         </div>
     </div>
 
-
+<script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
