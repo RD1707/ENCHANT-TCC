@@ -17,13 +17,14 @@
       <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
   
     <link rel="stylesheet" href="../CSS/esqueciasenha3.css" />
+    <script src="../JS/esqueciasenha3.js"></script>
     </head>
     <body>
    <section>
     <header>
       <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Adicionando a imagem à esquerda da navbar -->
-        <a class="navbar-brand" href="../index.html">
+        <a class="navbar-brand" href="index.html">
           <img
             src="../IMAGENS/imagemprincipal.png"
             width="120"
@@ -87,25 +88,60 @@
       <section class="containerinp">
         <input type="password" id="pass1" name="pass1" placeholder="********" required>
         <div id="passwordRequirements" class="password-requirements">
-          <div id="reqLength" class="requirement invalid">✓ Mínimo 8 caracteres</div>
-          <div id="reqUpper" class="requirement invalid">✓ Pelo menos 1 letra maiúscula</div>
-          <div id="reqNumbers" class="requirement invalid">✓ Pelo menos 2 números</div>
-          <div id="reqSpecial" class="requirement invalid">✓ Pelo menos 1 caractere especial</div>
+          <div id="reqLength" class="requirement invalid">Mínimo 8 caracteres</div>
+          <div id="reqUpper" class="requirement invalid">Pelo menos 1 letra maiúscula</div>
+          <div id="reqNumbers" class="requirement invalid">Pelo menos 2 números</div>
+          <div id="reqSpecial" class="requirement invalid"> Pelo menos 1 caractere especial</div>
         </div>
-        <div id="pass1Error" class="error-message"></div>
       </section>
       
       <section class="containertitlsub">
         <p class="pcd1">Confirme a nova senha:</p>
         <input type="password" class="novinho" id="pass2" name="pass2" placeholder="********" required>
-        <div id="pass2Error" class="error-message"></div>
-        <div id="mainErrorMessage" class="main-error"></div>
-        <div id="pass1Error" class="error-message"></div>
        <button type="submit">Enviar</button>
       </section>
     </form>
     </main>
 
+    <!-- Modal de Erro -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Atenção</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="errorModalBody">
+                    <!-- As mensagens de erro serão inseridas aqui dinamicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button id="closeErrorModal" type="submit" class="btn btn-secondary" data-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Sucesso!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Senha redefinida com sucesso!</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="closeSuccessModal" type="submit" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
       <div class="footer-container">
@@ -164,138 +200,10 @@
       integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
       crossorigin="anonymous"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
     <script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('passwordForm');
-  const pass1 = document.getElementById('pass1');
-  const pass2 = document.getElementById('pass2');
-  const pass1Error = document.getElementById('pass1Error');
-  const pass2Error = document.getElementById('pass2Error');
-  const mainErrorMessage = document.getElementById('mainErrorMessage');
-  
-  // Elementos dos requisitos
-  const reqLength = document.getElementById('reqLength');
-  const reqUpper = document.getElementById('reqUpper');
-  const reqNumbers = document.getElementById('reqNumbers');
-  const reqSpecial = document.getElementById('reqSpecial');
-
-  // Função para atualizar a UI dos requisitos
-  function updateRequirementUI(password) {
-    if (!password) {
-      [reqLength, reqUpper, reqNumbers, reqSpecial].forEach(el => {
-        el.classList.remove('valid');
-        el.classList.add('invalid');
-      });
-      return;
-    }
-    
-    reqLength.classList.toggle('valid', password.length >= 8);
-    reqLength.classList.toggle('invalid', password.length < 8);
-    
-    reqUpper.classList.toggle('valid', /[A-Z]/.test(password));
-    reqUpper.classList.toggle('invalid', !/[A-Z]/.test(password));
-    
-    const numberCount = (password.match(/[0-9]/g) || []).length;
-    reqNumbers.classList.toggle('valid', numberCount >= 2);
-    reqNumbers.classList.toggle('invalid', numberCount < 2);
-    
-    reqSpecial.classList.toggle('valid', /[!@#$%^&*(),.?":{}|<>]/.test(password));
-    reqSpecial.classList.toggle('invalid', !/[!@#$%^&*(),.?":{}|<>]/.test(password));
-  }
-  
-  // Validação em tempo real da senha
-  pass1.addEventListener('input', function() {
-    updateRequirementUI(pass1.value);
-    checkPasswordMatch();
-    clearErrors();
-  });
-  
-  // Verifica se as senhas coincidem
-  function checkPasswordMatch() {
-    if (pass1.value && pass2.value) {
-      if (pass1.value !== pass2.value) {
-        pass2.classList.add('password-mismatch');
-        pass2.classList.remove('password-match');
-      } else {
-        pass2.classList.remove('password-mismatch');
-        pass2.classList.add('password-match');
-      }
-    }
-  }
-  
-  pass2.addEventListener('input', function() {
-    checkPasswordMatch();
-    clearErrors();
-  });
-  
-  // Limpa mensagens de erro
-  function clearErrors() {
-    mainErrorMessage.innerHTML = '';
-  }
-  
-  // Validação completa da senha
-  function validatePassword(password) {
-    // Verifica todos os requisitos
-    const hasMinLength = password.length >= 8;
-    const hasUppercase = /[A-Z]/.test(password);
-    const numberCount = (password.match(/[0-9]/g) || []).length;
-    const hasEnoughNumbers = numberCount >= 2;
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    
-    return {
-      isValid: hasMinLength && hasUppercase && hasEnoughNumbers && hasSpecialChar
-    };
-  }
-  
-  // Validação no submit
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    clearErrors();
-    
-    let errorMessages = [];
-    let isValid = true;
-    
-    // Valida a força da senha primeiro
-    const passwordValidation = validatePassword(pass1.value);
-    if (!passwordValidation.isValid) {
-      errorMessages.push('Por favor, crie uma senha válida atendendo todos os requisitos.');
-      pass1.focus();
-      isValid = false;
-    }
-    
-    // Verifica se as senhas são iguais
-    if (pass1.value !== pass2.value) {
-      errorMessages.push('As senhas não coincidem!');
-      if (isValid) { // Só foca se o primeiro campo estiver ok
-        pass2.focus();
-      }
-      isValid = false;
-    }
-    
-    // Exibe todas as mensagens de erro
-    if (errorMessages.length > 0) {
-      // Cria elementos para cada mensagem de erro
-      errorMessages.forEach(message => {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-item';
-        errorDiv.textContent = message;
-        mainErrorMessage.appendChild(errorDiv);
-      });
-    }
-    
-    if (isValid) {
-      window.location.href = "esqueciasenha4.html";
-    }
-  });
-});
-  
+ 
       </script>
 </body>
 </html>
-</html>
-  
-
-      
