@@ -10,16 +10,15 @@
 
 body {
   background-color: #ffffff;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin: 0;
 }
 
 main {
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0 150px; /* Aplica margem lateral apenas no main */
   padding: 40px;
   border-radius: 10px;
-  width: 100%;
+  width: auto; /* Muda de 100% para auto */
 }
 
 h1 {
@@ -416,10 +415,7 @@ textarea.saved:hover {
 }
 
 @media (min-width: 769px) and (max-width: 1199px) {
- body {
-    margin-left: 0;
-    margin-right: 0;
-  }
+
 
   .uploads-wrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -438,10 +434,6 @@ textarea.saved:hover {
 }
 
 @media (max-width: 768px) {
-  body {
-    margin-left: 0;
-    margin-right: 0;
-  }
 
   .uploads-wrapper {
     grid-template-columns: 1fr;
@@ -499,5 +491,20 @@ textarea.saved:hover {
   .contato-item input {
     width: 100%;
     min-width: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  main {
+    margin-left: 150px !important;
+    margin-right: 150px !important;
+  }
+}
+
+@media (max-width: 1199px) {
+
+  main {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
