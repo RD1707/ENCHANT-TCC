@@ -125,6 +125,9 @@ document.getElementById("botao-continuar").addEventListener("click", function(){
     }else if(senha === ""){
         alert("Digite uma senha para prosseguir.")
         event.preventDefault();
+    }else if(confirmarSenha === "" || confirmarSenha =! senha){
+        alert("As senhas não coincidem.")
+        event.preventDefault();
     }else{
         window.location.href = "paginapagamento.html"
     }
