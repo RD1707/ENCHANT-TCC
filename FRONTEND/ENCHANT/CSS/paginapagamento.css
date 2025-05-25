@@ -109,7 +109,7 @@ main{
     flex: 1;
     padding: 2rem 0rem 7rem 0rem;
     gap: 2rem;
-    margin-top: 40px;
+    margin-top: 80px;
 }
 main h2{
     font-family: "Passion One";
@@ -127,7 +127,7 @@ main h2{
     justify-content: center;
     align-items: flex-start;
     gap: 2.3rem;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .asd{
     display: flex;
