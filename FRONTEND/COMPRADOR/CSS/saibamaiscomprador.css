@@ -33,10 +33,7 @@ h1 {
     font-size: 32px;
 }
 
-footer {
-    margin-left: -52px;
-    margin-top: auto; /* Mantém o footer no final */
-}
+
 
 @media (min-width: 769px) and (max-width: 1023px) {
     footer {
