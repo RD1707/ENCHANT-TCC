@@ -104,31 +104,12 @@ document.getElementById("botao-continuar").addEventListener("click", function(){
     const cidade = document.getElementById("cidade").value;
     const senha = document.getElementById("senha").value;
     const confirmarSenha = document.getElementById("confirmarsenha").value;
-    if(nome === ""){
-        alert("Informe o nome da ONG/Instituição para prosseguir.")
-        event.preventDefault();
-    }else if(email === ""){
-        alert("Informe o emal da ONG/Instituição para prosseguir.")
-        event.preventDefault();
-    }else if(cnpj === ""){
-        alert("Informe o CNPJ da ONG/Instituição para prosseguir.")
-        event.preventDefault();
-    }else if(tel === ""){
-        alert("Informe o telefone da ONG/Instituição para prosseguir.")
-        event.preventDefault();
-    }else if(estado === ""){
-        alert("Informe o estado em que a ONG/Instituição se encontra para prosseguir.")
-        event.preventDefault();
-    }else if(cidade === ""){
-        alert("Informe a cidade em que a ONG/Instituição se encontra para prosseguir.")
-        event.preventDefault();
-    }else if(senha === ""){
-        alert("Digite uma senha para prosseguir.")
-        event.preventDefault();
-    }else if(confirmarSenha === "" || confirmarSenha != senha){
-        alert("As senhas não coincidem.")
+
+    if(nome === "" || email === "" || cnpj === "" || tel === "" || estado === "" || cidade === "" || senha === "" || confirmarSenha === "" || confirmarSenha !== senha){
+        alert("Preencha todos os campos corretamente para prosseguir.");
         event.preventDefault();
     }else{
-        window.location.href = "paginapagamento.html"
+        console.log("Redirecionando para paginapagamento.html...");
+        window.location.href = "paginapagamento.html";
     }
 });
