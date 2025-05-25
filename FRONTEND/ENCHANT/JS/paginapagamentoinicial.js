@@ -95,6 +95,6 @@ function atualizarCidades(){
         });
     }
 }
-document.querySelector(".botao-continuar").addEventListener("click", function(){
+document.getElementById("botao-continuar").addEventListener("click", function(){
     window.location.href = "paginapagamento.html"
 });
