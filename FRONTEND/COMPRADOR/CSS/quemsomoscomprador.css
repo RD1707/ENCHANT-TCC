@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <title></title>
+     <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="quemsomoscomprador.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Lexend Deca", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            width: 95%;
+        }
+
+        h1 {
+            font-family: "Passion One", sans-serif;
+            font-weight: 400;
+            color: #693B11;
+            margin: 50px auto;
+            padding-top: 50px;
+            font-size: 32px;
+        }
+
+        .uploads-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-items: center;
+            margin: 30px auto;
+            max-width: 1000px;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 300px;
+            height: 300px;
+            border: 2px dashed #D3D3D3;
+            border-radius: 10px;
+            background-color: #FAFAFA;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-container:hover {
+            border-color: #E2CCAE;
+            background-color: #F9F7F4;
+        }
+
+        .upload-container.dragover {
+            border-color: #693B11;
+            background-color: #F5F1EB;
+        }
+
+        .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #E2CCAE;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-container:hover .upload-icon {
+            background-color: #D4B896;
+        }
+
+        .upload-icon i {
+            font-size: 24px;
+            color: #693B11;
+        }
+
+        .upload-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .upload-subtext {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 15px;
+        }
+
+        .upload-button {
+            background-color: #E2CCAE;
+            color: #693B11;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-button:hover {
+            background-color: #D4B896;
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .image-preview {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            object-fit: contain;
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .remove-image:hover {
+            background-color: rgba(255, 0, 0, 0.9);
+        }
+
+        .person-container {
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .person-name-input {
+            font-family: "Passion One", sans-serif;
+            font-weight: 400;
+            color: #693B11;
+            font-size: 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            padding: 8px 12px;
+            text-align: center;
+            min-width: 120px;
+            width: 100%;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .person-name-input:focus {
+            outline: none;
+            background-color: #f9f7f4;
+            border-bottom: 2px solid #E2CCAE;
+        }
+
+        .person-name-input:hover {
+            background-color: #fafafa;
+        }
+
+        .person-name-input.saved {
+            background-color: #ffffff;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .person-name-input.saved:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-1px);
+        }
+
+        .contatos {
+            font-family: "Passion One", sans-serif;
+            font-weight: 400;
+            color: #EC9E07;
+            margin-top: 40px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contatos-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-left: 25px;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .contato-item i {
+            font-size: 20px;
+            color: #000000;
+            width: 25px;
+            flex-shrink: 0;
+        }
+
+        .contato-item input {
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+            width: 250px;
+            min-width: 200px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contato-item input:focus {
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        .contato-item input.saved {
+            background-color: #ffffff;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contato-item input.saved:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-1px);
+        }
+
+        .fa-phone {
+            transform: rotate(90deg);
+        }
+
+        .sobre-missao-container {
+            margin: 40px 0;
+        }
+
+        .sobre-missao {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .sobre, .missao {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .h3-sm {
+            font-family: "Passion One", sans-serif;
+            font-weight: 400;
+            color: #693B11;
+            font-size: 20px;
+        }
+
+        .butao-editar {
+            background-color: #E2CCAE;
+            border: none;
+            border-radius: 18px;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .butao-editar:hover {
+            background-color: #D4B896;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+            resize: vertical;
+            min-height: 100px;
+            transition: background-color 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        textarea.saved {
+            background-color: #ffffff;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        textarea.saved:hover {
+            background-color: #f9f9f9;
+        }
+
+        .edit-indicator {
+            font-size: 12px;
+            color: #999;
+            font-style: italic;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .saved:hover + .edit-indicator,
+        .saved:focus + .edit-indicator {
+            opacity: 1;
+        }
+
+        .botao-salvar-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 40px;
+        }
+
+        .botao-salvar {
+            border: none;
+            background-color: #E2CCAE;
+            color: #693B11;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .botao-salvar:hover {
+            background-color: #D4B896;
+        }
+
+        .botao-salvar.has-changes {
+            background-color: #EC9E07;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        @media (min-width: 1200px) {
+            .uploads-wrapper {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 1200px;
+            }
+            
+            .sobre-missao {
+                grid-template-columns: 1fr 1fr;
+                gap: 50px;
+                align-items: start;
+            }
+            
+            main {
+                padding: 50px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1199px) {
+            .uploads-wrapper {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+            
+            .sobre-missao {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: start;
+            }
+            
+            .contatos-container {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+                width: 90%;
+            }
+            
+            .uploads-wrapper {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+            }
+            
+            .upload-container {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .sobre-missao {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contato-item {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+            
+            .contato-item input {
+                width: 100%;
+                max-width: 300px;
+                min-width: 200px;
+            }
+            
+            .person-name-input {
+                font-size: 18px;
+                min-width: 100px;
+            }
+            
+            .contatos-container {
+                margin-left: 0;
+            }
+            
+            h1 {
+                font-size: 28px;
+                margin: 30px auto;
+                padding-top: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            main {
+                padding: 15px;
+                width: 95%;
+            }
+            
+            .upload-container {
+                width: 260px;
+                height: 260px;
+            }
+            
+            .uploads-wrapper {
+                max-width: 280px;
+            }
+            
+            .contato-item input {
+                width: 100%;
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Quem somos?</h1>
+
+      
+        <div class="uploads-wrapper" id="uploadsWrapper">
+            <div class="person-container" id="personContainer0">
+                <div class="upload-container" id="uploadContainer0">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="upload-text">Clique para adicionar uma imagem</div>
+                        <div class="upload-subtext">ou arraste e solte aqui</div>
+                        <button class="upload-button" type="button">Escolher Arquivo</button>
+                    </div>
+                    <input type="file" class="file-input" accept="image/*">
+                    
+                    
+                    <div class="image-preview">
+                        <img class="preview-img" src="" alt="Preview">
+                        <button class="remove-image">&times;</button>
+                    </div>
+                </div>
+                
+              
+                <input type="text" class="person-name-input" placeholder="Pessoa 1" id="personName0">
+            </div>
+      
+        <p class="contatos">Contatos</p>
+        <div class="contatos-container">
+            <div class="contato-item">
+                <i class="fa fa-phone" ></i>
+                <input type="text" class="contato-input" placeholder="(71) 82737-9273" maxlength="15">
+            </div>
+            <div class="contato-item">
+                <i class="fab fa-whatsapp"></i>
+                <input type="text" class="contato-input" placeholder="(71) 82737-9273" maxlength="15">
+            </div>
+            <div class="contato-item">
+                <i class="fa fa-envelope"></i>
+                <input type="email" class="contato-input" placeholder="exemplo@gmail.com">
+            </div>
+        </div>
+
+          
+        <div class="sobre-missao-container">
+            <div class="sobre-missao">
+                <div class="sobre">
+                    <div class="section-header">
+                        <h3 class="h3-sm">Sobre</h3>
+                        <button class="butao-editar" data-target="sobre-textarea">
+                            <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
+                                <path d="M21.4492 9.875C21.6231 9.87506 21.7954 9.90904 21.9561 9.97559L22.0732 10.0312C22.188 10.0925 22.2934 10.1704 22.3857 10.2627L25.7373 13.6152H25.7363C25.8594 13.7383 25.9578 13.8842 26.0244 14.0449L26.0684 14.167C26.1061 14.2915 26.125 14.4212 26.125 14.5518C26.125 14.6823 26.1061 14.812 26.0684 14.9365L26.0244 15.0586C25.9744 15.1792 25.9068 15.292 25.8242 15.3926L25.7363 15.4883L16.4883 24.7354L16.4893 24.7363C16.3972 24.8291 16.2915 24.9072 16.1768 24.9688L16.0596 25.0244C15.9389 25.0745 15.8112 25.1067 15.6816 25.1191L15.5518 25.125H12.2002C11.8928 25.125 11.5961 25.0183 11.3604 24.8252L11.2627 24.7373C11.0142 24.4888 10.875 24.1512 10.875 23.7998V20.4482C10.8745 20.2743 10.909 20.1021 10.9756 19.9414L11.0312 19.8232C11.0927 19.7086 11.171 19.6037 11.2637 19.5117L20.5117 10.2627L20.6084 10.1758C20.7089 10.0933 20.8209 10.0255 20.9414 9.97559L21.0645 9.93164C21.1888 9.89397 21.3188 9.875 21.4492 9.875ZM12.3252 20.5V23.6748H15.501L21.9746 17.2002L18.7998 14.0254L12.3252 20.5ZM19.8242 13L23 16.1738L24.623 14.5508L21.4482 11.377L19.8242 13Z" fill="#61350C" stroke="#61350C" stroke-width="0.25"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <textarea id="sobre-textarea" placeholder="Escreva aqui..."></textarea>
+                </div>
+                
+                <div class="missao">
+                    <div class="section-header">
+                        <h3 class="h3-sm">Missão</h3>
+                        <button class="butao-editar" data-target="missao-textarea">
+                            <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
+                                <path d="M21.4492 9.875C21.6231 9.87506 21.7954 9.90904 21.9561 9.97559L22.0732 10.0312C22.188 10.0925 22.2934 10.1704 22.3857 10.2627L25.7373 13.6152H25.7363C25.8594 13.7383 25.9578 13.8842 26.0244 14.0449L26.0684 14.167C26.1061 14.2915 26.125 14.4212 26.125 14.5518C26.125 14.6823 26.1061 14.812 26.0684 14.9365L26.0244 15.0586C25.9744 15.1792 25.9068 15.292 25.8242 15.3926L25.7363 15.4883L16.4883 24.7354L16.4893 24.7363C16.3972 24.8291 16.2915 24.9072 16.1768 24.9688L16.0596 25.0244C15.9389 25.0745 15.8112 25.1067 15.6816 25.1191L15.5518 25.125H12.2002C11.8928 25.125 11.5961 25.0183 11.3604 24.8252L11.2627 24.7373C11.0142 24.4888 10.875 24.1512 10.875 23.7998V20.4482C10.8745 20.2743 10.909 20.1021 10.9756 19.9414L11.0312 19.8232C11.0927 19.7086 11.171 19.6037 11.2637 19.5117L20.5117 10.2627L20.6084 10.1758C20.7089 10.0933 20.8209 10.0255 20.9414 9.97559L21.0645 9.93164C21.1888 9.89397 21.3188 9.875 21.4492 9.875ZM12.3252 20.5V23.6748H15.501L21.9746 17.2002L18.7998 14.0254L12.3252 20.5ZM19.8242 13L23 16.1738L24.623 14.5508L21.4482 11.377L19.8242 13Z" fill="#61350C" stroke="#61350C" stroke-width="0.25"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <textarea id="missao-textarea" placeholder="Escreva aqui..."></textarea>
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="botao-salvar-container">
+            <button class="botao-salvar" id="botaoSalvar">Salvar</button>
+        </div>
+    </main>
+
+    <script>
+        let uploadCount = 0;
+        let personCount = 1;
+        let isSaved = false;
+
+        function initializeUploadContainer(container) {
+            const fileInput = container.querySelector('.file-input');
+            const imagePreview = container.querySelector('.image-preview');
+            const previewImg = container.querySelector('.preview-img');
+            const removeImageBtn = container.querySelector('.remove-image');
+            const uploadContent = container.querySelector('.upload-content');
+
+            container.addEventListener('click', (e) => {
+                if (e.target !== removeImageBtn && !imagePreview.style.display !== 'none') {
+                    fileInput.click();
+                }
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    handleFile(file, container);
+                }
+            });
+
+            removeImageBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                removeImage(container);
+            });
+
+            container.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                container.classList.add('dragover');
+            });
+
+            container.addEventListener('dragleave', (e) => {
+                e.preventDefault();
+                container.classList.remove('dragover');
+            });
+
+            container.addEventListener('drop', (e) => {
+                e.preventDefault();
+                container.classList.remove('dragover');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0 && files[0].type.startsWith('image/')) {
+                    handleFile(files[0], container);
+                }
+            });
+        }
+
+        function handleFile(file, container) {
+            const reader = new FileReader();
+            const uploadContent = container.querySelector('.upload-content');
+            const imagePreview = container.querySelector('.image-preview');
+            const previewImg = container.querySelector('.preview-img');
+            
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                uploadContent.style.display = 'none';
+                imagePreview.style.display = 'flex';
+                
+                createNewPersonContainer();
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function removeImage(container) {
+            const uploadContent = container.querySelector('.upload-content');
+            const imagePreview = container.querySelector('.image-preview');
+            const previewImg = container.querySelector('.preview-img');
+            const fileInput = container.querySelector('.file-input');
+
+            previewImg.src = '';
+            fileInput.value = '';
+            uploadContent.style.display = 'flex';
+            imagePreview.style.display = 'none';
+
+            const personContainer = container.closest('.person-container');
+            if (personContainer.id !== 'personContainer0') {
+                personContainer.remove();
+                updatePersonNumbers();
+            }
+        }
+
+        function createNewPersonContainer() {
+            uploadCount++;
+            personCount++;
+            const uploadsWrapper = document.getElementById('uploadsWrapper');
+            
+            const newPersonContainer = document.createElement('div');
+            newPersonContainer.className = 'person-container';
+            newPersonContainer.id = personContainer${uploadCount};
+            
+            newPersonContainer.innerHTML = `
+                <div class="upload-container" id="uploadContainer${uploadCount}">
+                    <div class="upload-content">
+                        <div class="upload-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="upload-text">Clique para adicionar uma imagem</div>
+                        <div class="upload-subtext">ou arraste e solte aqui</div>
+                        <button class="upload-button" type="button">Escolher Arquivo</button>
+                    </div>
+                    <input type="file" class="file-input" accept="image/*">
+                    
+                    <div class="image-preview">
+                        <img class="preview-img" src="" alt="Preview">
+                        <button class="remove-image">&times;</button>
+                    </div>
+                </div>
+                
+                <input type="text" class="person-name-input" placeholder="Pessoa ${personCount}" id="personName${uploadCount}">
+            `;
+            
+            uploadsWrapper.appendChild(newPersonContainer);
+            initializeUploadContainer(newPersonContainer.querySelector('.upload-container'));
+            initializePersonNameInput(newPersonContainer.querySelector('.person-name-input'));
+        }
+
+        function updatePersonNumbers() {
+            const personContainers = document.querySelectorAll('.person-container');
+            personCount = 1;
+            
+            personContainers.forEach((container, index) => {
+                const nameInput = container.querySelector('.person-name-input');
+                if (nameInput && nameInput.value === nameInput.placeholder) {
+                    nameInput.placeholder = Pessoa ${index + 1};
+                }
+                personCount = index + 2;
+            });
+        }
+
+        function initializePersonNameInput(input) {
+                 input.addEventListener('focus', function() {
+                if (this.value === '' || this.value === this.placeholder) {
+                    this.value = '';
+                }
+            });
+
+                  input.addEventListener('blur', function() {
+                if (this.value === '') {
+                  
+                }
+            });
+        }
+
+        initializeUploadContainer(document.getElementById('uploadContainer0'));
+        initializePersonNameInput(document.getElementById('personName0'));
+
+        const phoneInputs = document.querySelectorAll('input[type="text"]:not(.person-name-input)');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length <= 11) {
+                    value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                    value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                }
+                e.target.value = value;
+            });
+        });
+
+        const emailInput = document.querySelector('input[type="email"]');
+        emailInput.addEventListener('blur', function(e) {
+            const email = e.target.value;
+            if (email && !email.endsWith('@gmail.com')) {
+                alert('Por favor, use apenas emails do Gmail (@gmail.com)');
+                e.target.focus();
+            }
+        });
+
+        emailInput.addEventListener('input', function(e) {
+const value = e.target.value;
+            
+            if (value.includes('@') && !value.includes('@gmail.com')) {
+                const username = value.split('@')[0];
+                e.target.value = username + '@gmail.com';
+            }
+        });
+
+        
+function salvarDados() {
+            
+const contatoInputs = document.querySelectorAll('.contato-input');
+            contatoInputs.forEach((input, index) => {
+                localStorage.setItem(contato_${index}, input.value);
+            });
+
+            
+const sobreTextarea = document.getElementById('sobre-textarea');
+const missaoTextarea = document.getElementById('missao-textarea');
+            
+            localStorage.setItem('sobre_text', sobreTextarea.value);
+            localStorage.setItem('missao_text', missaoTextarea.value);
+
+            
+const personNameInputs = document.querySelectorAll('.person-name-input');
+            personNameInputs.forEach((input, index) => {
+                localStorage.setItem(person_name_${index}, input.value);
+            });
+
+isSaved = true;
+            
+            contatoInputs.forEach(input => {
+                input.style.backgroundColor = '#ffffff';
+                input.classList.add('saved');
+                input.readOnly = true;
+            });
+
+            personNameInputs.forEach(input => {
+                input.style.backgroundColor = '#ffffff';
+                input.classList.add('saved');
+                input.readOnly = true;
+            });
+
+            sobreTextarea.style.backgroundColor = '#ffffff';
+            sobreTextarea.classList.add('saved');
+            sobreTextarea.readOnly = true;
+
+            missaoTextarea.style.backgroundColor = '#ffffff';
+            missaoTextarea.classList.add('saved');
+            missaoTextarea.readOnly = true;
+
+            alert('Dados salvos com sucesso!');
+        }
+
+        function carregarDados() {
+            const contatoInputs = document.querySelectorAll('.contato-input');
+            contatoInputs.forEach((input, index) => {
+                const savedValue = localStorage.getItem(contato_${index});
+                if (savedValue) {
+                    input.value = savedValue;
+                }
+            });
+
+            const personNameInputs = document.querySelectorAll('.person-name-input');
+            personNameInputs.forEach((input, index) => {
+                const savedValue = localStorage.getItem(person_name_${index});
+                if (savedValue) {
+                    input.value = savedValue;
+                }
+            });
+
+            const sobreTextarea = document.getElementById('sobre-textarea');
+            const missaoTextarea = document.getElementById('missao-textarea');
+            
+            const savedSobre = localStorage.getItem('sobre_text');
+            const savedMissao = localStorage.getItem('missao_text');
+            
+            if (savedSobre) {
+                sobreTextarea.value = savedSobre;
+            }
+            if (savedMissao) {
+                missaoTextarea.value = savedMissao;
+            }
+        }
+
+        document.getElementById('botaoSalvar').addEventListener('click', salvarDados);
+
+        document.querySelectorAll('.contato-input').forEach(input => {
+            input.addEventListener('dblclick', function() {
+                if (isSaved) {
+                    this.readOnly = false;
+                    this.style.backgroundColor = '#f5f5f5';
+                    this.classList.remove('saved');
+                    this.focus();
+                }
+            });
+
+            input.addEventListener('blur', function() {
+                if (!this.readOnly && isSaved) {
+                    this.readOnly = true;
+                    this.style.backgroundColor = '#ffffff';
+                    this.classList.add('saved');
+                    
+                  
+const contatoInputs = document.querySelectorAll('.contato-input');
+                    contatoInputs.forEach((inp, index) => {
+                        localStorage.setItem(contato_${index}, inp.value);
+                    });
+                }
+            });
+        });
+
+        document.addEventListener('dblclick', function(e) {
+            if (e.target.classList.contains('person-name-input') && isSaved) {
+                e.target.readOnly = false;
+                e.target.style.backgroundColor = '#f9f7f4';
+                e.target.classList.remove('saved');
+                e.target.focus();
+            }
+        });
+
+        document.addEventListener('blur', function(e) {
+            if (e.target.classList.contains('person-name-input') && !e.target.readOnly && isSaved) {
+                e.target.readOnly = true;
+                e.target.style.backgroundColor = '#ffffff';
+                e.target.classList.add('saved');
+                
+              
+ const personNameInputs = document.querySelectorAll('.person-name-input');
+                personNameInputs.forEach((input, index) => {
+                    localStorage.setItem(person_name_${index}, input.value);
+                });
+            }
+        }, true);
+
+        
+        document.querySelectorAll('.butao-editar').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const textarea = document.getElementById(targetId);
+                
+                if (isSaved && textarea.readOnly) {
+                    textarea.readOnly = false;
+                    textarea.style.backgroundColor = '#f5f5f5';
+                    textarea.classList.remove('saved');
+                    textarea.focus();
+                }
+            });
+        });
+
+      
+        document.querySelectorAll('textarea').forEach(textarea => {
+            textarea.addEventListener('blur', function() {
+                if (!this.readOnly && isSaved) {
+                    this.readOnly = true;
+                    this.style.backgroundColor = '#ffffff';
+                    this.classList.add('saved');
+                    
+                    localStorage.setItem('sobre_text', document.getElementById('sobre-textarea').value);
+                    localStorage.setItem('missao_text', document.getElementById('missao-textarea').value);
+                }
+            });
+        });
+
+
+        window.addEventListener('load', carregarDados);
+    </script>
+  <script src="quemsomoscomprador.js" defer></script>
+</body>
+</html>
