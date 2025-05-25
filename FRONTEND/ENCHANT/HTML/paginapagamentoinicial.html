@@ -76,23 +76,23 @@
             <form action="">
                 <div>
                     <label for="nomecomprador">Nome da Instituição/ONG: <b style="color: #FF0404;">*</b></label>
-                    <input type="text" name="nomecomprador" id="nomecomprador" autocomplete="off" placeholder="ex: Nome da Instituição">
+                    <input type="text" name="nomecomprador" id="nomecomprador" autocomplete="off" placeholder="ex: Nome da Instituição" required>
                 </div>
                 <div>
                     <label for="email">Email: <b style="color: #FF0404;">*</b></label>
-                    <input type="text" name="email" id="email" autocomplete="off" placeholder="ex: example@gmail.com">
+                    <input type="text" name="email" id="email" autocomplete="off" placeholder="ex: example@gmail.com" required>
                 </div>
                 <div>
                     <label for="cnpj">CPNJ: <b style="color: #FF0404;">*</b></label>
-                    <input type="number" name="cnpj" id="cnpj" autocomplete="off" placeholder="ex: XX.XXX.XXX/0001-XX">
+                    <input type="number" name="cnpj" id="cnpj" autocomplete="off" placeholder="ex: XX.XXX.XXX/0001-XX" required>
                 </div>
                 <div>
                     <label for="tel">Telefone: <b style="color: #FF0404;">*</b></label>
-                    <input type="tel" name="tel" id="tel" autocomplete="off" placeholder="ex: 55+ (XX) XXXXX-XXXX">
+                    <input type="tel" name="tel" id="tel" autocomplete="off" placeholder="ex: 55+ (XX) XXXXX-XXXX" required>
                 </div>
                 <div>
                     <label for="estado">Estado: <b style="color: #FF0404;">*</b></label>
-                    <select name="estado" id="estado" onchange="atualizarCidades()">
+                    <select name="estado" id="estado" onchange="atualizarCidades()" required>
                         <option value="" hidden>Escolha uma opção...</option>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
@@ -125,18 +125,18 @@
                 </div>
                 <div>
                     <label for="cidade">Cidade: <b style="color: #FF0404;">*</b></label>
-                    <select name="cidade" id="cidade" disabled>
+                    <select name="cidade" id="cidade" disabled required>
                         <option value="" hidden>Selecione um estado primeiro...</option>
                     </select>
                 </div>
                 <div class="senha-area">
                     <div>
                         <label for="senha">Senha: <b style="color: #FF0404;">*</b></label><br>
-                        <input type="password" name="senha" id="senha">
+                        <input type="password" name="senha" id="senha" required>
                     </div>
                     <div>
                         <label for="confirmarsenha">Confirme a senha: <b style="color: #FF0404;">*</b></label><br>
-                        <input type="password" name="confirmarsenha" id="confirmarsenha" >
+                        <input type="password" name="confirmarsenha" id="confirmarsenha" required>
                     </div>
                 </div><br>
                 <div class="requerimento-senha">
@@ -157,7 +157,7 @@
                     </p>
                 </div>
                 <div class="div-botao-continuar">
-                    <button type="submit" class="botao-continuar">Continuar</button>
+                    <button type="submit" class="botao-continuar" id="botao-continuar">Continuar</button>
                 </div>
             </form>
         </section>
