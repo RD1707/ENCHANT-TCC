@@ -14,142 +14,95 @@
     />
     <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
     <link rel="stylesheet" href="../CSS/saibamaiscomprador.css">
-    <link rel="stylesheet" href="../CSS/barraheadercomprador.css">
+    <link rel="stylesheet" href="../CSS/headersemtransparente.css">
 </head>
 <body>
 
+   <section>
     <header>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <!-- Botão esquerdo para controlar a sidebar -->
-      <button
-        id="icone2"
-        class="navbar-toggler"
-        type="button"
-        onclick="toggleSidebar()"
-      >
-        <i style="font-size: 12px" class="navbar-toggler-icon"></i>
-      </button>
+      <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Adicionando a imagem à esquerda da navbar -->
+        <a class="navbar-brand" href="compradorantes.html">
+          <img
+            src="../imagens/imagemprincipal.png"
+            width="120"
+            height="auto"
+            alt="Logo"
+            class="img"
+          />
+        </a>
+        <button
+          id="icone"
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#conteudoNavbarSuportado"
+          aria-controls="conteudoNavbarSuportado"
+          aria-expanded="false"
+          aria-label="Alterna navegação"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-      <!-- Input File -->
-      <button class="upload-btn" id="imgheader">
-        <label for="imageUpload"
-          ><i class="bi bi-plus" id="btnn"></i
-        ></label>
-        <input
-          type="file"
-          id="imageUpload"
-          accept="image/*"
-          placeholder="Insira sua logo"
-        />
-      </button>
-
-
-      <!-- Botão direito para outras funcionalidades -->
-      <button
-        id="icone"
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-      >
-        <span style="font-size: 20px" class="bi bi-three-dots"></span>
-      </button>
-     
-      <!-- Navbar collapse - modificado para mobile -->
-      <div class="collapse navbar-collapse item" id="navbarNav">
-        <ul id="abcd" class="navbar-nav mx-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="quemsomos2.html">Quem somos?</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="saibamais2.html">Saiba mais</a>
-          </li>
-          <li class="nav-item profile-dropdown">
-            <button
-              class="btn btn-link"
-              id="usuario"
-              style="font-size: 14px; text-decoration: none"
-            >
-              <img
-                id="userPhoto"
-                src=""
-                alt="Foto do Usuário"
-                style="
-                  width: 40px;
-                  height: 40px;
-                  border-radius: 50%;
-                  object-fit: cover;
-                  display: none;
-                "
-              />
-              <i
-                id="userIcon"
-                class="bi bi-person-circle"
-                style="font-size: 35px; color: #ccc"
-              ></i>
-              <span>Nome do Usuário</span>
-            </button>
-            <!-- Dropdown menu movido para dentro do item de lista -->
-            <div id="dropzinho" class="dropdown-menu">
-              <a class="dropdown-item" href="perfilcomprador.html"
-                ><i class="bi bi-person"></i> Perfil</a
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+          <ul class="navbar-nav menu-lateral">
+            <li class="nav-item">
+              <a id="quem" class="nav-link" href="quemsomos2antes.html" title="Quem somos"
+                >Quem somos?</a
               >
-              <a class="dropdown-item" href="compradorantes.html"
-                ><i class="bi bi-box-arrow-right"></i> Sair</a
+            </li>
+            <li class="nav-item">
+              <a id="saiba" class="nav-link" href="saibamais2antes.html" title="Saiba mais"
+                >Saiba mais
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="entrar" class="nav-link" href="entrarcomprador.html" title="Entrar">Entrar</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                title="Cadastre-se"
               >
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
-    <div class="page-content">
-      <aside class="sidebar" id="sidebar">
-        <nav>
-          <a href="#"><i class="bi bi-list"></i><span></span></a>
+                Cadastre-se
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a
+                  id="dona1"
+                  class="dropdown-item" title="Cadastro do donatário"
+                  href="../../ENCHANT/HTML/cadastrodonatario1.html"
+                  >Cadastro Donatário
+                </a>
+                <a
+                  id="doap"
+                  class="dropdown-item" title="Cadastro do doador-pessoa"
+                  href="../../ENCHANT/HTML/cadastrodoadorpessoa1.html"
+                  >Cadastro Doador-Pessoa
+                </a>
+                <a
+                  id="doain"
+                  class="dropdown-item" title="Cadastro do doador-instituição"
+                  href="../../ENCHANT/HTML/cadastrodoadorinstituição1.html"
+                  >Cadastro Doador Instituição</a
+                >
+              </div>
+            </li>
+          </ul>
+          <!-- O botão permanece inalterado -->
+          <a href="entrarcomprador.html"><button class="btn btn-brown" type="button" id="doeagora">
+            Doe agora
+          </button></a>
+        </div>
+      </nav>
+    </header>
+  </section>
 
-             <a href="compradordepois.html"
-        ><i class="bi bi-house"></i
-        ><span style="font-size: 14px">Início</span></a
-      >
-      
-          <a href="mapa.html"
-            ><i class="bi bi-map"></i
-            ><span style="font-size: 14px">Mapa</span></a
-          >
-          <a href="pontosdeabrigo.html"
-            ><i class="bi bi-geo"></i
-            ><span style="font-size: 14px">Pontos de abrigo</span></a
-          >
-          <a href="ajudamedica.html"
-            ><i class="bi bi-truck"></i
-            ><span style="font-size: 14px">Ajuda médica</span></a
-          >
-          <a href="doacao.html"
-            ><i class="bi bi-box"></i
-            ><span style="font-size: 14px">Doação</span></a
-          >
-          <a href="pontosdecoleta.html"
-            ><i class="bi bi-geo-alt-fill"></i
-            ><span style="font-size: 14px">Pontos de coleta</span></a
-          >
-          <a href="historicodedoacoes.html"
-            ><i class="bi bi-journal"></i
-            ><span style="font-size: 14px">Histórico de doação</span></a
-          >
-          <a href="politica2.html"
-            ><i class="bi bi-file-earmark"></i
-            ><span style="font-size: 14px">Política de privacidade</span></a
-          >
-          <a href="ajuda.html"
-            ><i class="bi bi-info-circle"></i
-            ><span style="font-size: 14px">Ajuda</span></a
-          >
-        </nav>
-      </aside>
 
 
       <div id="caixa-principal">
@@ -317,6 +270,21 @@
       </div>
   </div>
 
+  <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../JS/saibamaiscomprador.js"></script>
