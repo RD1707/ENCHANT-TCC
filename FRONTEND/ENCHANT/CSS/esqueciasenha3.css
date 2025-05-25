@@ -288,7 +288,7 @@
 
  
        .requirement.invalid {
-         color: red;
+         color: rgb(139, 138, 138);
        }
   
       .error-message {
@@ -342,8 +342,8 @@
      font-size: 16px;
      color: rgb(0, 0, 0);
      background-color:rgb(255, 255, 255) ;
-     padding-left: 2rem;
-     padding-right: 0.3rem;
+     padding-left: 1rem;
+    
      padding-top: 0.2rem;
  }
  
@@ -362,7 +362,22 @@
      }
  }
  
- 
+ .btn btn-primary{
+
+   background-color: rgba(226, 204, 174, 1);
+         border: none; /* cor marrom */
+         border-color:none;
+         box-shadow: 0;
+         outline: none;
+         border-radius: 10px;/* cor da borda */
+         color: #4e3629;
+       padding: 8px 29px;
+         font-weight: 400;
+         font-size: 14px;
+         margin-top: 1rem;
+
+
+ }
  
  
  button[type="submit"]{
@@ -373,8 +388,7 @@
          outline: none;
          border-radius: 10px;/* cor da borda */
          color: #4e3629;
-         width: 8rem;
-         height: 2.5rem;
+       padding: 8px 15px;
          font-weight: 400;
          font-size: 14px;
          margin-top: 1rem;
@@ -384,15 +398,14 @@
   button[type="submit"]:hover {
     background-color: #caae8d;
     color: #3d2106;
-    border:1px solid #d8b48bce;
+    
          
           }
  @media(min-width: 800px){
      button[type="submit"]{
-         width: 10rem;
-         height: 2.2rem;
+         padding: 8px 25px;
          border-radius: 10px;
-         font-size: 16px;
+         font-size: 14px;
          margin-top: 1rem;
  
  
