@@ -17,8 +17,9 @@ body {
 .gg1 {
     text-align: center;
     color: #693B11;
+    margin-top:4rem;
     font-family: Passion One, sans-serif;
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: 32px;
     margin-bottom: 20px;
 }
 
@@ -551,7 +552,7 @@ body {
 /* Media queries para dispositivos muito pequenos */
 @media (max-width: 576px) {
     .gg1 {
-        font-size: 22px;
+        font-size: 28px;
     }
     
     .input-container {
@@ -640,7 +641,7 @@ body {
     }
     
     .gg1 {
-        font-size: 18px;
+        font-size: 28px;
     }
     
     .input-image-container {
