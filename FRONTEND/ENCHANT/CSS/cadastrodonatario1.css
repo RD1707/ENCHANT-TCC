@@ -259,7 +259,7 @@ input[type="radio"], input[type="checkbox"] {
   color: #666;
   margin: 0px 40px 40px;
 }
- #botao {
+ #bottao {
     background-color: #E2CCAE;
     width: 150px;
     height: 40px;
@@ -383,7 +383,7 @@ input[type="radio"], input[type="checkbox"] {
       font-size:12px
   }
   
-  #botao {
+  #bottao {
     background-color: #E2CCAE;
     width: 100px;
     height: 40px;

@@ -295,7 +295,7 @@ p span {
   margin: 0px 40px 8px;
 }
 
-#botao {
+#bottao {
   background-color: #E2CCAE;
   width: 150px;
   height: 45px;
@@ -307,7 +307,7 @@ p span {
   font-family: "Lexend Deca";
 }
 
-#botao:hover{
+#bottao:hover{
   background-color: #caae8d;
   color: #3d2106;
   border:1px solid #d8b48bce;
@@ -640,7 +640,7 @@ footer-left img {
     margin-right: 10px;
     font-size: 14px;
   }
-  #botao {
+  #bottao {
     background-color: #E2CCAE;
     width: 100px;
     height: 40px;
