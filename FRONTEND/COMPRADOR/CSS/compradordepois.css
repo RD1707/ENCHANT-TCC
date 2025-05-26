@@ -82,7 +82,7 @@ color: #000000;
 }
 
 .img-container{
-  width: 146vh;
+  width: 176vh;
   overflow: hidden;
 }
 
@@ -106,12 +106,12 @@ color: #000000;
 }
 
 .linha-separadora1 {
-  width: 70vh;
+  width: 85vh;
   border: 2px solid black;
   align-self: left;
 }
 .linha-separadora2 {
-  width: 70vh;
+  width: 85vh;
   border: 2px solid black;
   align-self: right;
 }
@@ -239,7 +239,7 @@ a{
   width: 90vh;
   background-color: black;
   margin-top: 3vh;
-  margin-left: 11.11vh;
+  margin-left: 3vh;
   border-radius: 10px;
 }
 

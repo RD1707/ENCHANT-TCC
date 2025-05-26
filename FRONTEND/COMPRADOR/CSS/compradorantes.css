@@ -15,6 +15,11 @@ body {
   min-height: 100vh;
 }
 
+.container h2{
+  width: 500px;
+  text-align: center;
+}
+
 /* principais duvidas */
 
 .accordion-button {
@@ -45,9 +50,6 @@ body {
   color: #61350C;
 }
 
-.navbar-nav {
-  flex-grow: 1; /* Faz com que a lista de navegação ocupe o máximo de espaço disponível */
-}
 
 .linha-separadora1 {
   width: 600px;
@@ -291,6 +293,13 @@ p#sub{
   text-align: justify;
 }
 
+p#sub2{
+  color: black;
+  font-size: 20px;
+  font-weight: 300; 
+  text-align: center;
+}
+
 #retangulo p{
   width: 960px;
   height: 119px;
@@ -319,11 +328,16 @@ p#sub{
 }
 
 @media (max-width: 1408px) {
-  .container2{
-    flex-wrap: wrap;
-  }
   .container3{
-    flex-direction: column;
+    margin: 50px;
+  }
+  .card {
+    width: 300px;
+    height: 226.2px;
+  }
+
+  .container-imagem{
+    height: 400px;
   }
 }
 
@@ -336,8 +350,16 @@ p#sub{
     width: 400px;
     height: 210px;
     align-self: center;
-    margin-left: 5%;
     border-radius: 10px;
+  }
+
+  .container3{
+    flex-direction: column;
+  }
+
+  .card {
+    width: 500px;
+    height: 377px;
   }
 
   .accordion-container {
@@ -406,10 +428,19 @@ p#sub{
 
   .container2{
     align-items: center;
+    margin: 10px;
+  }
+
+  .linha-separadora2 {
+    width: 100px;
+    border: 2px solid black;
+    margin: 10px 0 20px;
   }
 
   #imagem3{
-    margin-left: 100px;
+    width: 400px;
+    height: 210px;
+    border-radius: 10px;
   }
 
   .footer-logo {
@@ -438,8 +469,7 @@ p#sub{
   }
 
   #imagem3{
-    margin-right: 600px;
-    align-self: center;
+    margin: 5px;
   }
   h3{
     font-size: 10px;
@@ -450,12 +480,9 @@ p#sub{
   }
 
   .container2{
-    flex-direction: column;
-    align-items: left;
-    justify-content: left;
-    margin: 0;
-    margin-bottom: 0;
-    margin-top: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
   }
   .linha-separadora2 {
     width: 100px;
