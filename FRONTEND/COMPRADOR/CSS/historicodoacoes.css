@@ -24,6 +24,7 @@ body {
 .inicio h1 {
   font-family: "Passion One", cursive;
   font-size: 32px;
+  padding-top: 40px;
   color: #593C1C;
   margin: 0;
 }
