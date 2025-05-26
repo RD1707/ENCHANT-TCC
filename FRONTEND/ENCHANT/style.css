@@ -15,7 +15,12 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
+#secao-plano{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 #fixado {
   position: fixed;
   width: 100%;
@@ -44,11 +49,13 @@ body {
   width: 800px; 
   height: 477px;
   border-radius: 0px 20px 20px 0px;
+  margin-left: 300px;
 }
 
 #imagem3{
   width: 960; 
   height: 477px;
+  border-radius: 20px 0px 0px 20px;
 }
 
 /* Seção de imagem inicial */
@@ -60,7 +67,7 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   text-align: justify;
   border-radius: 12px;
-  margin-left: 200px;
+  margin-left: 10px;
 }
 
 .info-box p {
@@ -118,8 +125,12 @@ body {
   color: black;
   text-align: justify;
   width: 929px;
-  margin-left: 100px;
+  margin-left: 50px;
   padding: 60px 30px;
+}
+
+.secao-ferramentas h2, .secao-ferramentas p{
+  width: 700px;
 }
 
 .secao-ferramentas2 {
@@ -134,8 +145,7 @@ body {
 
 /* Cards de planos */
 #planos{
-  margin-left: 110px;
-  margin-bottom: 50px;
+  margin-bottom: 80px;
 }
 
 .card-container {
@@ -233,13 +243,16 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  margin-top: 30px;
+
 }
 
 .container{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 30px;
   margin: 0;
   padding: 0;
   gap: 10px;
@@ -249,9 +262,14 @@ body {
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
+  margin-top: 30px;
   padding: 0;
   margin-bottom: 100px;
   background-color: #DFD9D7;
+}
+
+.container2 p{
+  width: 500px;
 }
 
 .linha-separadora {
@@ -465,7 +483,26 @@ footer {
     flex-wrap: wrap; 
   }
 }
-
+@media (max-width: 1800px){
+  #imagem2{
+    width: 400px; 
+    height: 277px;
+    border-radius: 20px 20px 20px 20px;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .container{
+    align-items: center;
+    justify-content: center;
+    margin-left: 200px;
+  }
+  .info-box{
+    margin-left: 0;
+  }
+  .secao-ferramentas p, .secao-ferramentas h2{
+    width: 500px;
+  }
+}
 @media (max-width: 1600px){
   .info-box{
     margin-left: 0;
@@ -481,6 +518,9 @@ footer {
     text-align: center;
   }
 
+  .secao-ferramentas p, .secao-ferramentas h2{
+    text-align: center;
+  }
   .secao-ferramentas{
     margin: 0;
     text-align: center;
@@ -501,6 +541,7 @@ footer {
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-left: 0;
   }
 
   #imagem2{
