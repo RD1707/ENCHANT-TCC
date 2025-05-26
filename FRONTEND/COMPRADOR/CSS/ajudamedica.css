@@ -35,9 +35,10 @@ padding-bottom: 20px;
 
 h1 {
 display: flex;
+padding-top: 25px;
 flex-direction: start;
 font-family: "Passion One", sans-serif;
-font-weight: 700;
+font-weight: 400;
 color: var(--primary-color);
 font-size: 32px;
 margin-bottom: 10px;
