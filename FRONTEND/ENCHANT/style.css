@@ -96,7 +96,7 @@ body {
 }
 
 .secao-objetivo h2 {
-  font-size: 36px;
+  font-size: 32px;
   margin-bottom: 20px;
 }
 
@@ -142,7 +142,6 @@ body {
   display: flex;
   gap: 32px;
   justify-content: center;
-  flex-wrap: wrap; 
   margin-bottom: 100px;
 }
 
@@ -358,6 +357,10 @@ footer {
     font-size: 10px;
   }
 
+  .price, .subtitle, .features, .button, .card-header, li{
+    font-size: 10px;
+  }
+
   .info-box{
     margin-left: 0;
   }
@@ -457,9 +460,19 @@ footer {
 
 }
 
+@media (max-width: 1300px){
+  .card-container{
+    flex-wrap: wrap; 
+  }
+}
+
 @media (max-width: 1600px){
   .info-box{
     margin-left: 0;
+  }
+
+  .card-container{
+    margin: 10px;
   }
 
   .container-pai{
@@ -470,6 +483,7 @@ footer {
 
   .secao-ferramentas{
     margin: 0;
+    text-align: center;
   }
 
   .secao-ferramentas2{
@@ -484,7 +498,6 @@ footer {
   }
 
   .container{
-    flex-wrap: wrap;
     text-align: center;
     justify-content: center;
     align-items: center;
@@ -495,6 +508,7 @@ footer {
     height: 277px;
     border-radius: 20px 20px 20px 20px;
     margin-left: 0;
+    margin-top: 10px;
   }
   
   #imagem3{
@@ -502,12 +516,12 @@ footer {
     height: auto;
     border-radius: 20px 20px 20px 20px;
     margin: 0;
+    margin-bottom: 10px;
   }
 
   .container2{
     margin-top: 100px;
-    flex-wrap: wrap;
-    justify-content: left;
+    justify-content: center;
     width: 100%;
   }
 }
