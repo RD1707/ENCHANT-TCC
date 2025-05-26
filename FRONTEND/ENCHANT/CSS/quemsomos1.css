@@ -344,7 +344,13 @@ footer-left img{
 }
 }
 
-@media (min-width: 799px) {
+@media (min-width: 799px){
+main {
+  margin: 20px auto;
+  padding: 20px;
+}
+
+
   .sobre-missao {
     display: grid;
     grid-template-columns: 1fr;
@@ -413,6 +419,8 @@ footer-left img{
 }
 
 @media (min-width: 1024px) {
+
+
   .sobre-missao {
     display: grid;
     grid-template-columns: 1fr 1fr;

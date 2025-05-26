@@ -365,6 +365,11 @@ footer-left img {
 }
 
 @media (min-width: 799px) {
+main {
+  margin: 20px auto;
+  padding: 20px;
+}
+
   .imagem01 {
     max-width: 100%;
     width: 100%;
@@ -432,6 +437,11 @@ footer-left img {
 }
 
 @media (min-width: 1024px) {
+main {
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
   .container {
     display: flex;
     flex-wrap: wrap;
