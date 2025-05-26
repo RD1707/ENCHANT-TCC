@@ -32,9 +32,8 @@
   text-align: left;
 }
 
-.img {
-  margin-top: -0.6rem;
-  margin-left: 1rem;
+#logocomprador {
+  margin-left: 1.5rem !important;
 }
 
 #dona1,
