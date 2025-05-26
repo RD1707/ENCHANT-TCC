@@ -16,18 +16,6 @@ body {
   min-height: 100vh;
 }
 
-#imagem2{
-  width: 800px; 
-  height: 477px;
-  left: 0;
-}
-
-#imagem3{
-  width: 960; 
-  height: 477px;
-}
-
-/* Barra de navegação */
 #fixado {
   position: fixed;
   width: 100%;
@@ -38,12 +26,33 @@ body {
   padding-right: 16px;
 }
 
+.img {
+  margin-top: -0.6rem;
+  margin-left: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 14px;
+  gap: 0.5rem;
+  margin-left: 20px;
+}
+
+#imagem2{
+  width: 800px; 
+  height: 477px;
+  border-radius: 0px 20px 20px 0px;
+}
+
+#imagem3{
+  width: 960; 
+  height: 477px;
+}
+
 /* Seção de imagem inicial */
 .info-box {
-  position: absolute;
-  top: 50%; 
-  right: 5%;
-  transform: translateY(-50%); 
   max-width: 90vw; 
   width: 350px; 
   padding: 20px 30px;
@@ -51,6 +60,7 @@ body {
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   text-align: justify;
   border-radius: 12px;
+  margin-left: 200px;
 }
 
 .info-box p {
@@ -106,6 +116,7 @@ body {
 .secao-ferramentas {
   background-color: #ffffff;
   color: black;
+  text-align: justify;
   width: 929px;
   margin-left: 100px;
   padding: 60px 30px;
@@ -123,7 +134,7 @@ body {
 
 /* Cards de planos */
 #planos{
-  margin-left: 200px;
+  margin-left: 110px;
   margin-bottom: 50px;
 }
 
@@ -191,8 +202,13 @@ body {
   transition: 0.3s; 
 } 
 
-.button:hover, .button#pago:hover { 
+.button:hover { 
   background-color: #d7b68d; 
+}
+
+.button#pago:hover{
+  color: #333;
+  border: 1px solid #333; 
 }
 
 #doeagora { 
@@ -217,13 +233,17 @@ body {
 .container-pai{
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .container{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
+  gap: 10px;
 }
 .container2{
   display: flex;
@@ -334,21 +354,62 @@ footer {
     padding: 20px 30px;
   }
 
+  .container h2, .container p, .container2 h2, .container2 p{
+    font-size: 10px;
+  }
+
+  .info-box{
+    margin-left: 0;
+  }
+
+  .container-pai{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .secao-ferramentas2{
+    margin-left: 0;
+    padding: 60px 5px;
+  }
+
+  .linha-separadora{
+    color: transparent;
+    width: 150px;
+    border: 1px solid #000;
+  }
+
+  .container{
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #imagem2{
+    width: 400px; 
+    height: 277px;
+    border-radius: 20px 20px 20px 20px;
+    margin-left: 0;
+  }
+  
+  #imagem3{
+    width: 500px;
+    height: auto;
+    margin: 0;
+  }
+
+  .container2{
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+
 
   .footer-container {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 5px;
-  }
-
-  .container{
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-  .container2{
-    flex-wrap: wrap;
-    flex-direction: column;
   }
 
   .footer-left {
@@ -395,6 +456,61 @@ footer {
   }
 
 }
+
+@media (max-width: 1600px){
+  .info-box{
+    margin-left: 0;
+  }
+
+  .container-pai{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .secao-ferramentas{
+    margin: 0;
+  }
+
+  .secao-ferramentas2{
+    margin: 50px;
+    padding: 60px 5px;
+  }
+
+  .linha-separadora{
+    color: transparent;
+    width: 150px;
+    border: 1px solid #000;
+  }
+
+  .container{
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #imagem2{
+    width: 400px; 
+    height: 277px;
+    border-radius: 20px 20px 20px 20px;
+    margin-left: 0;
+  }
+  
+  #imagem3{
+    width: 500px;
+    height: auto;
+    border-radius: 20px 20px 20px 20px;
+    margin: 0;
+  }
+
+  .container2{
+    margin-top: 100px;
+    flex-wrap: wrap;
+    justify-content: left;
+    width: 100%;
+  }
+}
 /*tablet*/
 
 @media (max-width: 1100px) and (min-width: 700px) {
@@ -403,18 +519,6 @@ footer {
     padding: 0;
   }
 
-  .container-pai{
-    flex-wrap: wrap;
-  }
-
-  .container{
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-  .container2{
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
 
   main {
     display: flex;
@@ -433,9 +537,9 @@ footer {
   }
 
   .container-box{
-    position: absolute;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 
   .nav-item {
@@ -457,20 +561,6 @@ footer {
   #doeagora {
     margin-left: 15px;
   }
-  .container-pai{
-    flex-wrap: wrap;
-  }
-  .container{
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
-  .container2{
-    flex-wrap: wrap;
-    justify-content: right;
-    margin: 0 auto;
-    flex-direction: column;
-  }
-
 
   main {
     display: flex;
@@ -519,17 +609,7 @@ footer {
     .navbar-toggler {
       margin-right: 15px;
     }
-    .container-pai{
-    flex-wrap: wrap;
-    }
-    .container{
-    flex-wrap: wrap;
-    flex-direction: column;
-    }
-    .container2{
-      flex-wrap: wrap;
-      flex-direction: column;
-    }
+   
 
    
     /* Remove o alinhamento centralizado em telas menores */
