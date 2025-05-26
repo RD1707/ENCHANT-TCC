@@ -212,7 +212,7 @@ body {
   color: #633204;
   margin: 0px 40px 40px;
 }
- #botao {
+ #bootao {
     background-color: #E2CCAE;
     width: 120px;
     height: 40px;
@@ -224,7 +224,7 @@ body {
      font-family: "Lexend Deca";
 
   }
-  #botao:hover{
+  #bootao:hover{
     background-color: #caae8d;
     color: #000000;
     border:1px solid #d8b48bce;
@@ -236,7 +236,15 @@ body {
   margin-top: 20px;
 }
 
-.botao-avancar {
+.footer-column {
+  display: flex;
+  flex: 2;
+  flex-direction: column !important;
+  min-width: 200px;
+  text-align: center;
+}
+
+.bottao-avancar {
   background-color: transparent;
   font-size: 40px;
   width: 40px;
@@ -246,11 +254,11 @@ body {
   justify-content: center;
   cursor: pointer;
 }
-.botao-none {
+.bottao-none {
   background-color: transparent;
   border: none;
 }
-#botao-validar{
+#bottao-validar{
   background-color: #E2CCAE;
   border: none;
   color: #000000;
@@ -301,12 +309,12 @@ body {
     justify-content: space-between;
   }
 
-  #botao1, #botao2{
+  #bottao1, #bootao2{
     border-radius: 10px;
     font-size: 14px;
   }
 
-#botao1{
+#bottao1{
     background-color: transparent;
     border: #000000 solid 1px;
     width: 120px;
@@ -314,7 +322,7 @@ body {
     justify-content: start;
 }
 
-#botao2{
+#bootao2{
 background-color: #E2CCAE;
 border: none;
 width: 120px;
@@ -322,7 +330,7 @@ height: 40px;
 justify-content: flex-end;
 }
 
-#botao2:hover{
+#bootao2:hover{
   background-color: #caae8d;
   color: #000000;
   border:1px solid #d8b48bce;
@@ -483,7 +491,7 @@ footer-left img {
     margin-right: 10px;
     font-size: 14px;
   }
-  #botao {
+  #bootao {
     background-color: #E2CCAE;
     width: 100px;
     height: 40px;

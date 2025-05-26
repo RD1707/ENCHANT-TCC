@@ -242,7 +242,7 @@ body {
   cursor: pointer;
   color: #888;
 }
- #botao {
+ #botaooo {
     background-color: #E2CCAE;
     width: 150px;
     height: 40px;
@@ -255,7 +255,7 @@ body {
 
   }
   
-  #botao:hover{
+  #botaooo:hover{
     background-color: #caae8d;
     color: #3d2106;
     border:1px solid #d8b48bce;
@@ -267,7 +267,7 @@ body {
   margin-top: 20px;
 }
 
-#botao-inicial{
+#botao-iniciall{
   background-color: #E2CCAE;
     width: 100px;
     height: 40px;
@@ -278,7 +278,8 @@ body {
      font-size: 14px;
      font-family: "Lexend Deca";
 }
-#botao-inicial:hover {
+
+#botao-iniciall:hover {
   background-color: #caae8d;
   color: #3d2106;
   border:1px solid #d8b48bce;
@@ -462,7 +463,7 @@ footer-left img {
     margin-right: 10px;
     font-size: 14px;
   }
-  #botao {
+  #botaooo {
     background-color: #E2CCAE;
     width: 100px;
     height: 40px;
