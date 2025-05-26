@@ -37,7 +37,7 @@ function validateLogin(event) {
     
     // Redirecionamento após 2 segundos
     setTimeout(() => {
-        window.location.href = "/ENCHANT-TCC/FRONTEND/COMPRADOR/HTML/compradordepois.html"; // Redireciona para a página inicial
+        window.location.href = "../../COMPRADOR/HTML/compradordepois.html"; // Redireciona para a página inicial
     }, 2000);
     
     return false;
