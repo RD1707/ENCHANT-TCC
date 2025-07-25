@@ -4,164 +4,1038 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
-    <title>Enchant</title>
-    <link rel="stylesheet" href="../CSS/paginapagamentoinicial.css">
-    <link rel="stylesheet" href="paginapagamentoinicial.css">
+    <title>Pagamento - Enchant</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
+
+        :root{
+            --corfundo: #F5F5F5;
+            --corfundo-footer: #fcf2e8;
+            --corfundo-container: #F9E7D2;
+            --corbotao1: #e2ccae;
+            --corbotao2: #caae8d;
+            --cortitulo: #4E3629;
+            --cortexto: #535151;
+            --corlink: #EC9E07;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Lexend Deca", sans-serif;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100vh;
+            background-color: var(--corfundo);
+            justify-content: space-between;
+        }
+
+        /* Header */
+        #fixado {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 14px;
+            gap: 0.5rem;
+            margin-left: 20px;
+        }
+
+        .menu-lateral {
+            justify-content: flex-start;
+            text-align: left;
+        }
+
+        .img {
+            margin-top: -0.6rem;
+            margin-left: 1rem;
+        }
+
+        #conteudoNavbarSuportado {
+            text-align: left;
+        }
+
+        .nav-centralizada {
+            gap: 1px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        #icone {
+            border: none;
+            outline: none;
+        }
+
+        .btn-brown, #doeagora {
+            background-color: rgba(226, 204, 174, 1);
+            border-color: rgba(226, 204, 174, 1);
+            color: #4E3629;
+            font-weight: 700;
+            font-family: "Lexend Deca";
+        }
+
+        #doeagora {
+            font-size: 16px;
+            width: 9rem;
+            margin-right: 2rem;
+        }
+
+        #doeagora:hover {
+            background-color: #caae8d;
+        }
+
+        /* Main */
+        main{
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem 0rem 7rem 0rem;
+            z-index: 1;
+            margin-top: 80px;
+        }
+
+        .pagamento{
+            color: var(--cortitulo);
+            text-align: center;
+            font-size: 32px;
+            font-weight: 500;
+            font-family: Passion One, sans-serif;
+        }
+
+        /* Primeira Parte - Formulário de Dados */
+        .primeira-parte {
+            display: block;
+        }
+
+        .primeira-parte.hidden {
+            display: none;
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            background-color: var(--corfundo-container);
+            padding: 2rem 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            padding: 0 3rem;
+            gap: 10px;
+        }
+
+        #email, #cnpj, #nomecomprador, #tel{
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        #estado, #cidade{
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+            color: #757575;
+        }
+
+        #estado:focus, #cidade:focus, #email:focus, #cnpj:focus, #nomecomprador:focus, #tel:focus{
+            outline: none;
+        }
+
+        #estado option:not(:first-child), #cidade option:not(:first-child){
+            color: black;
+        }
+
+        label{
+            line-height: 45px;
+            margin-left: 15px;
+        }
+
+        input[type="number"]::-webkit-inner-spin-button, 
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .senha-area{
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .senha-area > div {
+            width: 48%;
+        }
+
+        #senha, #confirmarsenha{
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px;
+            border-radius: 50px;
+        }
+
+        #senha:focus, #confirmarsenha:focus{
+            outline: none;
+        }
+
+        #senha-conter{
+            color: var(--cortitulo);
+        }
+
+        .requerimento-senha p{
+            line-height: 5px;
+            font-size: 12px;
+        }
+
+        .requerimento-senha p:not(:first-child){
+            margin-left: 10px;
+            color: #757575;
+        }
+
+        .div-botao-continuar{
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .botao-continuar{
+            border: none;
+            background-color: var(--corbotao1);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .botao-continuar:hover{
+            background-color: var(--corbotao2);
+        }
+
+        .recomendações{
+            display: flex;
+            padding: 10px 55px;
+            font-size: 16px;
+        }
+
+        /* Segunda Parte - Pagamento */
+        .segunda-parte {
+            display: none;
+        }
+
+        .segunda-parte.visible {
+            display: block;
+        }
+
+        .pagamento-container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2.3rem;
+            margin-top: 40px;
+        }
+
+        .asd{
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+        }
+
+        #comprar{
+            background-color: var(--corbotao1);
+            border: 1px solid var(--corbotao1);
+            color: var(--cortitulo);
+            font-weight: 700;
+            font-size: 16px;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #comprar:hover{
+            background-color: var(--corbotao2);
+            border:1px solid var(--corbotao2);
+        }
+
+        .detalhes-container{
+            display: flex;
+            width: 50rem;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 2rem 2rem 3rem 2rem;
+            gap: 1.5rem;
+        }
+
+        .detalhes-container .titulo{
+            border-bottom: 1px solid #B7B6B6;
+            padding-bottom: 1rem;
+        }
+
+        .informações{
+            display: flex;
+            width: 100%;
+            text-align: center;
+            justify-content: space-around;
+        }
+
+        .detalhe-column{
+            font-size: 16px;
+        }
+
+        .detalhe-column #nomeong, #emailong, #telong{
+            font-size: 16px;
+            color: #B7B6B6;
+        }
+
+        .pedido{
+            width: 30rem;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--corfundo-footer);
+            border-radius: 20px;
+            padding: 2rem;
+            gap: 1.5rem;
+            justify-content: space-between;
+        }
+
+        .pedido .titulo{
+            border-bottom: 1px solid #B7B6B6;
+            padding-bottom: 1rem;
+        }
+
+        .valor{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .botaocomprar{
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .escolher-pagamento{
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #numerocartao, #numerocartaodebito, #nometitular{
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+        }
+
+        #numerocartao:focus, #numerocartaodebito:focus, #nometitular:focus{
+            outline: none;
+        }
+
+        #cvv, #cvvdebito{
+            width: 340px;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+        }
+
+        #cvv:focus, #cvvdebito:focus{
+            outline: none;
+        }
+
+        #mes, #mesdebito{
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 170px;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px 0px 0px 50px;
+            color: #757575;
+        }
+
+        #ano, #anodebito{
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            width: 170px;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 0px 50px 50px 0px;
+            color: #757575;
+        }
+
+        #mes:focus, #ano:focus, #anodebito:focus, #mesdebito:focus{
+            box-shadow: none;
+            outline: none;
+        }
+
+        #mes option:not(:first-child), #ano option:not(:first-child), 
+        #mesdebito option:not(:first-child), #anodebito option:not(:first-child){
+            color: black;
+        }
+
+        .form-pagamento{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .informaçoes-pagamento{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #cvvlabel, #datalabel, #numerocartaolabel, #nomecompletolabel, #cpflabel, #cvvdebitolabel{
+            line-height: 45px;
+            margin-left: 15px;
+        }
+
+        #nomecompleto{
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+        }
+
+        #nomecompleto:focus{
+            outline: none;
+        }
+
+        #cpf{
+            width: 100%;
+            height: auto;
+            border: 1px solid #B7B6B6;
+            padding: 10px 15px 10px 15px;
+            border-radius: 50px;
+        }
+
+        #cpf:focus{
+            outline: none;
+        }
+
+        .cartao-debito, .pix {
+            display: none;
+        }
+
+        .btn-voltar {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            color: var(--cortitulo);
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-voltar:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Footer */
+        .footer-container{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            background-color: var(--corfundo-footer);
+            gap: 40px;
+            padding: 20px 50px;
+        }
+
+        .footer-left{
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            height: 100%;
+            gap: 10px;
+        }
+
+        #footer-logo{
+            width: 200px;
+            height: auto;
+        }
+
+        .footer-left p{
+            font-size: 10px;
+            color: var(--cortexto);
+        }
+
+        .footer-right{
+            display: flex;
+            height: 100%;
+        }
+
+        .footer-column {
+            flex: 2;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .footer-right h3{
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--cortexto);
+        }
+
+        .footer-right a{
+            color: var(--corlink);
+            text-decoration: none;
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer-right a:hover {
+            text-decoration: underline;
+            color: #8B7777;
+        }
+
+        /* Responsividade */
+        @media (max-width: 1200px) {
+            .detalhes-container {
+                width: 45rem;
+            }
+            
+            .pedido {
+                width: 28rem;
+            }
+            
+            .pagamento-container {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .pagamento-container {
+                flex-direction: column;
+                align-items: center;
+                padding: 0 2rem;
+            }
+            
+            .detalhes-container {
+                width: 100%;
+                max-width: 600px;
+            }
+            
+            .pedido {
+                width: 100%;
+                max-width: 600px;
+            }
+            
+            .informações {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: left;
+            }
+            
+            .detalhe-column {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                border-bottom: 1px solid #e0e0e0;
+                padding-bottom: 0.5rem;
+            }
+            
+            .detalhe-column:last-child {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 110px;
+            }
+            
+            main {
+                padding: 1.5rem 0rem 4rem 0rem;
+            }
+            
+            form {
+                padding: 0 1rem;
+            }
+
+            label {
+                line-height: 35px;
+                margin-left: 10px;
+                font-size: 14px;
+            }
+
+            .senha-area {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .senha-area > div {
+                width: 100%;
+            }
+            
+            .detalhes-container {
+                padding: 1.5rem;
+            }
+            
+            .pedido {
+                padding: 1.5rem;
+            }
+            
+            .informaçoes-pagamento {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            #cvv, #cvvdebito {
+                width: 100%;
+            }
+            
+            .escolher-pagamento {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .footer-container{
+                text-align: center;
+                padding: 20px 30px;
+                gap: 30px;
+            }
+            
+            .footer-left{
+                max-width: 100%;
+                align-items: center;
+                justify-content: center;
+                font-size: 10px;
+            }
+            
+            .footer-right {
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+            }
+            
+            .footer-column {
+                text-align: left;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            main {
+                padding: 1rem 0rem 3rem 0rem;
+                gap: 1.5rem;
+            }
+            
+            .pagamento {
+                font-size: 1.8rem;
+                padding: 0 1rem;
+            }
+            
+            .pagamento-container {
+                padding: 0 1rem;
+            }
+            
+            .detalhes-container {
+                padding: 1rem;
+                border-radius: 15px;
+            }
+            
+            .pedido {
+                padding: 1rem;
+                border-radius: 15px;
+            }
+            
+            #comprar {
+                width: 100%;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .navbar-brand {
+                margin-right: 0;
+            }
+           
+            .navbar-toggler {
+                margin-right: 15px;
+            }
+           
+            #conteudoNavbarSuportado {
+                text-align: left !important;
+            }
+           
+            .navbar-collapse.show .navbar-nav,
+            .navbar-collapse.collapsing .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+            }
+           
+            .nav-centralizada {
+                display: block;
+                width: 100%;
+                text-align: left;
+                justify-content: flex-start;
+            }
+           
+            .btn-brown {
+                margin: 10px 0;
+                justify-content: flex-start;
+                display: block;
+                margin-right: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-       <section>
-    <header>
-      <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Adicionando a imagem à esquerda da navbar -->
-        <a class="navbar-brand" href="../index.html">
-          <img
-            src="../IMAGENS/imagemprincipal.png"
-            width="120"
-            height="auto"
-            alt="Logo"
-            class="img"
-          />
-        </a>
-        <button
-          id="icone"
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#conteudoNavbarSuportado"
-          aria-controls="conteudoNavbarSuportado"
-          aria-expanded="false"
-          aria-label="Alterna navegação"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <section>
+        <header>
+            <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../IMAGENS/imagemprincipal.png" width="120" height="auto" alt="Logo" class="img" />
+                </a>
+                <button id="icone" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-          <ul class="navbar-nav menu-lateral">
-            <li class="nav-item">
-              <a id="quem" class="nav-link" href="quemsomos1.html" title="Quem somos"
-                >Quem somos?</a
-              >
-            </li>
-            <li class="nav-item">
-              <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais"
-                >Saiba mais
-              </a>
-            </li>
-            <li class="nav-item">
-              <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
-            </li>
-          </ul>
-          <!-- O botão permanece inalterado -->
-          <a href="../index.html"><button class="btn btn-brown" type="button" id="doeagora">
-            Junte-se a nós
-          </button></a>
-        </div>
-      </nav>
-    </header>
-  </section>
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                    <ul class="navbar-nav menu-lateral">
+                        <li class="nav-item">
+                            <a id="quem" class="nav-link" href="quemsomos1.html" title="Quem somos">Quem somos?</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="saiba" class="nav-link" href="saibamais1.html" title="Saiba mais">Saiba mais</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="entrar" class="nav-link" href="entrar1.html" title="Entrar">Entrar</a>
+                        </li>
+                    </ul>
+                    <a href="../index.html"><button class="btn btn-brown" type="button" id="doeagora">Junte-se a nós</button></a>
+                </div>
+            </nav>
+        </header>
+    </section>
+
     <main>
-        <div>
-            <h2 class="pagamento">Pagamento</h2>
-        </div>
-        <section class="container">
-            <div class="recomendações">
-                <p>
-                    Recomendamos atenção total ao preencher os dados nos campos solicitados. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.
-                </p>
+        <!-- Primeira Parte - Formulário de Dados -->
+        <div class="primeira-parte" id="primeira-parte">
+            <div>
+                <h2 class="pagamento">Insira os seus dados</h2>
             </div>
-            <form action="">
-                <div>
-                    <label for="nomecomprador">Nome da Instituição/ONG: <b style="color: #FF0404;">*</b></label>
-                    <input type="text" name="nomecomprador" id="nomecomprador" autocomplete="off" placeholder="ex: Nome da Instituição" required>
+            <section class="container">
+                <div class="recomendações">
+                    <p>
+                        Recomendamos atenção total ao preencher os dados nos campos solicitados. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.
+                    </p>
                 </div>
-                <div>
-                    <label for="email">Email: <b style="color: #FF0404;">*</b></label>
-                    <input type="text" name="email" id="email" autocomplete="off" placeholder="ex: example@gmail.com" required>
-                </div>
-                <div>
-                    <label for="cnpj">CPNJ: <b style="color: #FF0404;">*</b></label>
-                    <input type="number" name="cnpj" id="cnpj" autocomplete="off" placeholder="ex: XX.XXX.XXX/0001-XX" required>
-                </div>
-                <div>
-                    <label for="tel">Telefone: <b style="color: #FF0404;">*</b></label>
-                    <input type="tel" name="tel" id="tel" autocomplete="off" placeholder="ex: 55+ (XX) XXXXX-XXXX" required>
-                </div>
-                <div>
-                    <label for="estado">Estado: <b style="color: #FF0404;">*</b></label>
-                    <select name="estado" id="estado" onchange="atualizarCidades()" required>
-                        <option value="" hidden>Escolha uma opção...</option>
-                        <option value="AC">Acre</option>
-                        <option value="AL">Alagoas</option>
-                        <option value="AP">Amapá</option>
-                        <option value="AM">Amazonas</option>
-                        <option value="BA">Bahia</option>
-                        <option value="CE">Ceará</option>
-                        <option value="DF">Distrito Federal</option>
-                        <option value="ES">Espírito Santo</option>
-                        <option value="GO">Goiás</option>
-                        <option value="MA">Maranhão</option>
-                        <option value="MT">Mato Grosso</option>
-                        <option value="MS">Mato Grosso do Sul</option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="PA">Pará</option>
-                        <option value="PB">Paraíba</option>
-                        <option value="PR">Paraná</option>
-                        <option value="PE">Pernambuco</option>
-                        <option value="PI">Piauí</option>
-                        <option value="RJ">Rio de Janeiro</option>
-                        <option value="RN">Rio Grande do Norte</option>
-                        <option value="RS">Rio Grande do Sul</option>
-                        <option value="RO">Rondônia</option>
-                        <option value="RR">Roraima</option>
-                        <option value="SC">Santa Catarina</option>
-                        <option value="SP">São Paulo</option>
-                        <option value="SE">Sergipe</option>
-                        <option value="TO">Tocantins</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="cidade">Cidade: <b style="color: #FF0404;">*</b></label>
-                    <select name="cidade" id="cidade" disabled required>
-                        <option value="" hidden>Selecione um estado primeiro...</option>
-                    </select>
-                </div>
-                <div class="senha-area">
+                <form id="dados-form">
                     <div>
-                        <label for="senha">Senha: <b style="color: #FF0404;">*</b></label><br>
-                        <input type="password" name="senha" id="senha" required>
+                        <label for="nomecomprador">Nome da Instituição/ONG: <b style="color: #FF0404;">*</b></label>
+                        <input type="text" name="nomecomprador" id="nomecomprador" autocomplete="off" placeholder="ex: Nome da Instituição" required>
                     </div>
                     <div>
-                        <label for="confirmarsenha">Confirme a senha: <b style="color: #FF0404;">*</b></label><br>
-                        <input type="password" name="confirmarsenha" id="confirmarsenha" required>
+                        <label for="email">Email: <b style="color: #FF0404;">*</b></label>
+                        <input type="email" name="email" id="email" autocomplete="off" placeholder="ex: example@gmail.com" required>
                     </div>
-                </div><br>
-                <div class="requerimento-senha">
-                    <p id="senha-conter">
-                        Sua senha deve conter:
-                    </p>
-                    <p id="minimodigitos">
-                        <b style="color: #FF0404;">*</b> Mínimo 8 dígitos
-                    </p>
-                    <p id="doisnumeros">
-                        <b style="color: #FF0404;">*</b> Pelo menos 2 números
-                    </p>
-                    <p id="umcaracterespecial">
-                        <b style="color: #FF0404;">*</b> Pelo menos 1 caracter especial
-                    </p>
-                    <p id="letramaiuscula">
-                        <b style="color: #FF0404;">*</b> Pelo menos 1 letra maiúscula
-                    </p>
+                    <div>
+                        <label for="cnpj">CNPJ: <b style="color: #FF0404;">*</b></label>
+                        <input type="text" name="cnpj" id="cnpj" autocomplete="off" placeholder="ex: XX.XXX.XXX/0001-XX" required>
+                    </div>
+                    <div>
+                        <label for="tel">Telefone: <b style="color: #FF0404;">*</b></label>
+                        <input type="tel" name="tel" id="tel" autocomplete="off" placeholder="ex: 55+ (XX) XXXXX-XXXX" required>
+                    </div>
+                    <div>
+                        <label for="estado">Estado: <b style="color: #FF0404;">*</b></label>
+                        <select name="estado" id="estado" onchange="atualizarCidades()" required>
+                            <option value="" hidden>Escolha uma opção...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="PA">Pará</option>
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="cidade">Cidade: <b style="color: #FF0404;">*</b></label>
+                        <select name="cidade" id="cidade" disabled required>
+                            <option value="" hidden>Selecione um estado primeiro...</option>
+                        </select>
+                    </div>
+                    <div class="senha-area">
+                        <div>
+                            <label for="senha">Senha: <b style="color: #FF0404;">*</b></label><br>
+                            <input type="password" name="senha" id="senha" required>
+                        </div>
+                        <div>
+                            <label for="confirmarsenha">Confirme a senha: <b style="color: #FF0404;">*</b></label><br>
+                            <input type="password" name="confirmarsenha" id="confirmarsenha" required>
+                        </div>
+                    </div><br>
+                    <div class="requerimento-senha">
+                        <p id="senha-conter">Sua senha deve conter:</p>
+                        <p id="minimodigitos"><b style="color: #FF0404;">*</b> Mínimo 8 dígitos</p>
+                        <p id="doisnumeros"><b style="color: #FF0404;">*</b> Pelo menos 2 números</p>
+                        <p id="umcaracterespecial"><b style="color: #FF0404;">*</b> Pelo menos 1 caracter especial</p>
+                        <p id="letramaiuscula"><b style="color: #FF0404;">*</b> Pelo menos 1 letra maiúscula</p>
+                    </div>
+                    <div class="div-botao-continuar">
+                        <button type="submit" class="botao-continuar" id="botao-continuar">Continuar</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Segunda Parte - Pagamento -->
+        <div class="segunda-parte" id="segunda-parte">
+            <div>
+                <h2 class="pagamento">Finalizar Pagamento</h2>
+            </div>
+            <section class="pagamento-container">
+                <div class="asd">
+                    <div class="detalhes-container">
+                        <div class="titulo">
+                            <h4>Detalhes do cliente</h4>
+                        </div>
+                        <div class="informações">
+                            <div class="detalhe-column">
+                                <p id="nomeong">Nome da ONG</p>
+                                <p id="display-nome">XXXXXXXXXXX</p>
+                            </div>
+                            <div class="detalhe-column">
+                                <p id="emailong">Email</p>
+                                <p id="display-email">example@gmail.com.br</p>
+                            </div>
+                            <div class="detalhe-column">
+                                <p id="telong">Telefone</p>
+                                <p id="display-telefone">+55 (XX)XXXXX-XXXX</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detalhes-container">
+                        <div class="titulo">
+                            <h4>Detalhes do pagamento</h4>
+                        </div>
+                        <div class="asd">
+                            <form class="form-pagamento">
+                                <div class="escolher-pagamento">
+                                    <input type="radio" name="opcao" value="1" checked onclick="mudarpagamento(1)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00000">
+                                        <path d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z"/>
+                                    </svg>Cartão de crédito
+                                    <input type="radio" name="opcao" value="2" onclick="mudarpagamento(2)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#00000">
+                                        <path d="M880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720Zm-720 80h640v-80H160v80Zm0 160v240h640v-240H160Zm0 240v-480 480Z"/>
+                                    </svg>Cartão de débito
+                                    <input type="radio" name="opcao" value="3" onclick="mudarpagamento(3)">
+                                    <i class="fa-brands fa-pix"></i>Pix
+                                </div>
+                                <div class="cartao-credito">
+                                    <div>
+                                        <label for="numerocartao" id="numerocartaolabel">Número do cartão: <b style="color: #FF0404;">*</b></label>
+                                        <input type="text" name="numerocartao" id="numerocartao" placeholder="ex: 0000 0000 0000 0000" autocomplete="off">
+                                    </div>
+                                    <div class="informaçoes-pagamento">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <label for="datavalidade" id="datalabel">Data de expiração: <b style="color: #FF0404;">*</b></label>
+                                            <div>
+                                                <select name="mes" id="mes">
+                                                    <option value="" disabled hidden selected>Mês</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                    <option value="9">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                                <select name="ano" id="ano">
+                                                    <option value="" disabled hidden selected>Ano</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                    <option value="2031">2031</option>
+                                                    <option value="2032">2032</option>
+                                                    <option value="2033">2033</option>
+                                                    <option value="2034">2034</option>
+                                                    <option value="2035">2035</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <label for="cvv" id="cvvlabel">CVV: <b style="color: #FF0404;">*</b></label>
+                                            <input type="text" name="cvv" id="cvv" autocomplete="off" minlength="3" maxlength="4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cartao-debito">
+                                    <div>
+                                        <label for="numerocartaodebito">Número do cartão: <b style="color: #FF0404;">*</b></label>
+                                        <input type="text" name="numerocartaodebito" id="numerocartaodebito" placeholder="ex: 0000 0000 0000 0000" autocomplete="off">
+                                    </div>
+                                    <div class="informaçoes-pagamento">
+                                        <div style="display: flex; flex-direction: column;">
+                                            <label for="mesdebito">Data de expiração: <b style="color: #FF0404;">*</b></label>
+                                            <div>
+                                                <select name="mesdebito" id="mesdebito">
+                                                    <option value="" disabled hidden selected>Mês</option>
+                                                    <option value="1">01</option>
+                                                    <option value="2">02</option>
+                                                    <option value="3">03</option>
+                                                    <option value="4">04</option>
+                                                    <option value="5">05</option>
+                                                    <option value="6">06</option>
+                                                    <option value="7">07</option>
+                                                    <option value="8">08</option>
+                                                    <option value="9">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                                <select name="anodebito" id="anodebito">
+                                                    <option value="" disabled hidden selected>Ano</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                    <option value="2031">2031</option>
+                                                    <option value="2032">2032</option>
+                                                    <option value="2033">2033</option>
+                                                    <option value="2034">2034</option>
+                                                    <option value="2035">2035</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column;">
+                                            <label for="cvvdebito">CVV: <b style="color: #FF0404;">*</b></label>
+                                            <input type="text" name="cvvdebito" id="cvvdebito" autocomplete="off" minlength="3" maxlength="4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pix">
+                                    <label for="nomecompleto" id="nomecompletolabel">Nome completo: <b style="color: #FF0404;">*</b></label>
+                                    <input type="text" name="nomecompleto" id="nomecompleto" autocomplete="off" required>
+                                    <label for="cpf" id="cpflabel">CPF: <b style="color: #FF0404;">*</b></label>
+                                    <input type="text" name="cpf" id="cpf" autocomplete="off" required>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="div-botao-continuar">
-                    <button type="submit" class="botao-continuar" id="botao-continuar">Continuar</button>
+                <div class="pedido">
+                    <div class="titulo">
+                        <h4>Pedido</h4>
+                    </div>
+                    <div>
+                        <div class="valor">
+                            <p>Valor total:</p>
+                            <p>R$ 999,99</p>
+                        </div>
+                        <div class="valor">
+                            <p>Subtotal:</p>
+                            <p>R$ 999,99</p>
+                        </div>
+                        <div class="valor">
+                            <p>Taxa/Impostos:</p>
+                            <p>R$ 999,99</p>
+                        </div>
+                    </div>
+                    <div class="botaocomprar">
+                        <button class="btn-voltar" onclick="voltarParaDados()">Voltar</button>
+                        <button id="comprar">Continuar com a compra</button>
+                    </div>
                 </div>
-            </form>
-        </section>
+            </section>
+        </div>
     </main>
+
     <footer>
         <div class="footer-container"> 
             <div class="footer-left">
@@ -181,7 +1055,7 @@
                     <h3>MAIS INFORMAÇÕES</h3>
                     <a href="#" title="Conheça mais sobre o ENCHANT - clique">Conheça mais sobre o ENCHANT</a>
                 </div>
-                <div class="footer-column"  title="PROTEÇÃO DE DADOS - clique">
+                <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
                     <h3>PROTEÇÃO DE DADOS</h3>
                     <a href="#">Política de privacidade</a>
                 </div>
@@ -193,10 +1067,223 @@
             </div>
         </div>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../JS/paginapagamentoinicial.js"></script>
-</body>
-</html>
+
+    <script>
+        // Estados e cidades do Brasil
+        const estadosCidades = {
+            'AC': ['Rio Branco', 'Cruzeiro do Sul', 'Sena Madureira'],
+            'AL': ['Maceió', 'Arapiraca', 'Palmeira dos Índios'],
+            'AP': ['Macapá', 'Santana', 'Laranjal do Jari'],
+            'AM': ['Manaus', 'Parintins', 'Itacoatiara'],
+            'BA': ['Salvador', 'Feira de Santana', 'Vitória da Conquista', 'Camaçari', 'Juazeiro', 'Ilhéus'],
+            'CE': ['Fortaleza', 'Caucaia', 'Juazeiro do Norte'],
+            'DF': ['Brasília'],
+            'ES': ['Vitória', 'Vila Velha', 'Serra'],
+            'GO': ['Goiânia', 'Aparecida de Goiânia', 'Anápolis'],
+            'MA': ['São Luís', 'Imperatriz', 'Timon'],
+            'MT': ['Cuiabá', 'Várzea Grande', 'Rondonópolis'],
+            'MS': ['Campo Grande', 'Dourados', 'Três Lagoas'],
+            'MG': ['Belo Horizonte', 'Uberlândia', 'Contagem'],
+            'PA': ['Belém', 'Ananindeua', 'Santarém'],
+            'PB': ['João Pessoa', 'Campina Grande', 'Santa Rita'],
+            'PR': ['Curitiba', 'Londrina', 'Maringá'],
+            'PE': ['Recife', 'Jaboatão dos Guararapes', 'Olinda'],
+            'PI': ['Teresina', 'Parnaíba', 'Picos'],
+            'RJ': ['Rio de Janeiro', 'São Gonçalo', 'Duque de Caxias'],
+            'RN': ['Natal', 'Mossoró', 'Parnamirim'],
+            'RS': ['Porto Alegre', 'Caxias do Sul', 'Pelotas'],
+            'RO': ['Porto Velho', 'Ji-Paraná', 'Ariquemes'],
+            'RR': ['Boa Vista', 'Rorainópolis', 'Caracaraí'],
+            'SC': ['Florianópolis', 'Joinville', 'Blumenau'],
+            'SP': ['São Paulo', 'Guarulhos', 'Campinas'],
+            'SE': ['Aracaju', 'Nossa Senhora do Socorro', 'Lagarto'],
+            'TO': ['Palmas', 'Araguaína', 'Gurupi']
+        };
+
+        // Função para atualizar cidades baseado no estado selecionado
+        function atualizarCidades() {
+            const estadoSelect = document.getElementById('estado');
+            const cidadeSelect = document.getElementById('cidade');
+            const estadoSelecionado = estadoSelect.value;
+
+            // Limpar opções anteriores
+            cidadeSelect.innerHTML = '<option value="" hidden>Escolha uma cidade...</option>';
+            
+            if (estadoSelecionado && estadosCidades[estadoSelecionado]) {
+                cidadeSelect.disabled = false;
+                
+                // Adicionar cidades do estado selecionado
+                estadosCidades[estadoSelecionado].forEach(cidade => {
+                    const option = document.createElement('option');
+                    option.value = cidade;
+                    option.textContent = cidade;
+                    cidadeSelect.appendChild(option);
+                });
+            } else {
+                cidadeSelect.disabled = true;
+                cidadeSelect.innerHTML = '<option value="" hidden>Selecione um estado primeiro...</option>';
+            }
+        }
+
+        // Função para validar senha
+        function validarSenha(senha) {
+            const temMinimo8 = senha.length >= 8;
+            const tem2Numeros = (senha.match(/\d/g) || []).length >= 2;
+            const temCaractereEspecial = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(senha);
+            const temMaiuscula = /[A-Z]/.test(senha);
+            
+            return {
+                temMinimo8,
+                tem2Numeros,
+                temCaractereEspecial,
+                temMaiuscula,
+                valida: temMinimo8 && tem2Numeros && temCaractereEspecial && temMaiuscula
+            };
+        }
+
+        // Função para ir para a página de pagamento
+        function irParaPagamento() {
+            const form = document.getElementById('dados-form');
+            const formData = new FormData(form);
+            
+            // Validar se todas as informações foram preenchidas
+            let todosPreenchidos = true;
+            for (let [key, value] of formData.entries()) {
+                if (!value.trim()) {
+                    todosPreenchidos = false;
+                    break;
+                }
+            }
+            
+            if (!todosPreenchidos) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return false;
+            }
+            
+            // Validar senhas
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarsenha').value;
+            
+            if (senha !== confirmarSenha) {
+                alert('As senhas não coincidem.');
+                return false;
+            }
+            
+            const validacao = validarSenha(senha);
+            if (!validacao.valida) {
+                alert('A senha não atende aos requisitos de segurança.');
+                return false;
+            }
+            
+            // Transferir dados para a segunda página
+            document.getElementById('display-nome').textContent = document.getElementById('nomecomprador').value;
+            document.getElementById('display-email').textContent = document.getElementById('email').value;
+            document.getElementById('display-telefone').textContent = document.getElementById('tel').value;
+            
+            // Esconder primeira parte e mostrar segunda
+            document.getElementById('primeira-parte').classList.add('hidden');
+            document.getElementById('segunda-parte').classList.add('visible');
+            
+            return false;
+        }
+
+        // Função para voltar para os dados
+        function voltarParaDados() {
+            document.getElementById('segunda-parte').classList.remove('visible');
+            document.getElementById('primeira-parte').classList.remove('hidden');
+        }
+
+        // Função para mudar o tipo de pagamento
+        function mudarpagamento(opcao) {
+            const cartaoCredito = document.querySelector('.cartao-credito');
+            const cartaoDebito = document.querySelector('.cartao-debito');
+            const pix = document.querySelector('.pix');
+            
+            // Esconder todos
+            cartaoCredito.style.display = 'none';
+            cartaoDebito.style.display = 'none';
+            pix.style.display = 'none';
+            
+            // Mostrar o selecionado
+            switch(opcao) {
+                case 1:
+                    cartaoCredito.style.display = 'block';
+                    break;
+                case 2:
+                    cartaoDebito.style.display = 'block';
+                    break;
+                case 3:
+                    pix.style.display = 'block';
+                    break;
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Formulário de dados
+            document.getElementById('dados-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                irParaPagamento();
+            });
+
+            // Validação em tempo real da senha
+            document.getElementById('senha').addEventListener('input', function() {
+                const senha = this.value;
+                const validacao = validarSenha(senha);
+                
+                // Atualizar indicadores visuais
+                document.getElementById('minimodigitos').style.color = validacao.temMinimo8 ? 'green' : '#757575';
+                document.getElementById('doisnumeros').style.color = validacao.tem2Numeros ? 'green' : '#757575';
+                document.getElementById('umcaracterespecial').style.color = validacao.temCaractereEspecial ? 'green' : '#757575';
+                document.getElementById('letramaiuscula').style.color = validacao.temMaiuscula ? 'green' : '#757575';
+            });
+
+            // Inicializar com cartão de crédito selecionado
+            mudarpagamento(1);
+        });
+
+        // Máscaras para os campos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Máscara para CNPJ
+            document.getElementById('cnpj').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+                value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para telefone
+            document.getElementById('tel').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/^(\d{2})(\d)/, '+55 ($1) $2');
+                value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para CPF (na seção PIX)
+            document.getElementById('cpf').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+                e.target.value = value;
+            });
+
+            // Máscara para número do cartão
+            const mascaraCartao = function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+                e.target.value = value;
+            };
+
+            document.getElementById('numerocartao').addEventListener('input', mascaraCartao);
+            document.getElementById('numerocartaodebito').addEventListener('input', mascaraCartao);
+        });
+    </script>

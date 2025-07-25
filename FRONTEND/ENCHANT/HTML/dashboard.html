@@ -1,0 +1,163 @@
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Doações - Enchant</title>
+    <link rel="stylesheet" href="../CSS/dashoboard.css">
+    <script src="../JS/dashboard.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <!-- Controles -->
+        <div class="controls">
+            <button class="btn btn-primary">Histórico de doações</button>
+            <button class="btn btn-secondary">Mapa de riscos</button>
+        </div>
+
+        <!-- Conteúdo principal -->
+        <div class="main-content">
+            <!-- Seção do gráfico -->
+            <div class="chart-section">
+                <div class="chart-container">
+                    <canvas id="rendimentoChart" class="chart-canvas"></canvas>
+                </div>
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #FF6B35;"></div>
+                        <span>Pontos de Coleta</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4A4A4A;"></div>
+                        <span>Pontos de Abrigo</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pontos de coleta -->
+            <div class="collection-points">
+                <div class="points-list">
+                    <h3>Ponto de coleta X:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>10 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px;">Ponto de coleta Y:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>39 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px;">Ponto de coleta Y:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>1 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px;">Ponto de coleta Y:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>59 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px;">Ponto de coleta Y:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>10 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px;">Ponto de coleta Y:</h3>
+                    <div class="point-item">
+                        <div class="point-icon"></div>
+                        <span>143 DOAÇÕES</span>
+                        <span style="margin-left: auto; color: #666;">Pendente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de relatórios -->
+        <div class="reports-section">
+            <div class="report-card">
+                <div class="report-icon">📊</div>
+                <h3>Relatório mais atualizado da histórico das doações recebidas.</h3>
+                <div style="background: #dc3545; color: white; padding: 10px; border-radius: 5px; margin-top: 15px;">
+                    <strong>PDF</strong><br>
+                    <small>723 KB</small>
+                </div>
+            </div>
+            <div class="report-card">
+                <div class="report-icon">📈</div>
+                <h3>Principais fluxos dos ONGs do Brasil, procure e entre que melhor se adeque ao que você precisa.</h3>
+                <div style="display: flex; gap: 10px; margin-top: 15px; justify-content: center;">
+                    <div style="background: #FFC107; padding: 8px; border-radius: 5px; font-size: 12px;">Portal</div>
+                    <div style="background: #FF9800; padding: 8px; border-radius: 5px; font-size: 12px;">Celesc</div>
+                    <div style="background: #4CAF50; padding: 8px; border-radius: 5px; font-size: 12px;">🌍</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grid de estatísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">30</div>
+                <div class="stat-label">Número de doações para roupas:</div>
+                <div class="stat-sublabel">Menor que o mês passado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">90</div>
+                <div class="stat-label">Número de doações para alimentos:</div>
+                <div class="stat-sublabel">Maior que o mês passado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Número de doações para produtos de higiene:</div>
+                <div class="stat-sublabel">Menor que o mês passado</div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">50</div>
+                <div class="stat-label">Número de doações para móveis:</div>
+                <div class="stat-sublabel">Maior que o mês passado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100</div>
+                <div class="stat-label">Número de doações para livros e brinquedos:</div>
+                <div class="stat-sublabel">Maior que o mês passado</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">05</div>
+                <div class="stat-label">Número de doações para roupas de cama e cobertores:</div>
+                <div class="stat-sublabel">Menor que o mês passado</div>
+            </div>
+        </div>
+
+        <!-- Seção de transparência -->
+        <div class="transparency-section">
+            <div class="transparency-card">
+                <div class="level-indicator">
+                    <div class="level-number">3</div>
+                    <div>Você ainda está no nível bronze, mas faça mais para alcançar melhor!</div>
+                    <div style="margin-top: 10px; color: #FFC107;">★ Como melhorar?</div>
+                </div>
+            </div>
+            <div class="transparency-card">
+                <h3 style="margin-bottom: 15px;">Percentual de transparência:</h3>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                    <div style="font-size: 48px;">👍</div>
+                    <div class="transparency-percentage">50%</div>
+                </div>
+            </div>
+        </div>
+
+</body>
+</html>
