@@ -41,434 +41,277 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Inicialização dos componentes para pontos de coleta
+// Inicialização dos componentes para pontos de coleta
 function setupPontosColetaFunctionality() {
     // Variáveis globais
     let count = 0;
     const maxItems = 9;
     let editingItemId = null;
-    let originalFileName = null;
     
     // Elementos do DOM
     const addButton = document.getElementById('addButton');
     const cancelButton = document.getElementById('cancelButton');
-    const inputForm = document.getElementById('inputForm');
     const imageInput = document.getElementById('imageInput');
     const imagePreview = document.getElementById('imagePreview');
     const localName = document.getElementById('localName');
-    const openingHours = document.querySelectorAll('#openingHours')[0]; // Primeiro campo de horário (abertura)
-    const closingHours = document.querySelectorAll('#openingHours')[1]; // Segundo campo de horário (fechamento)
+    const openingHours = document.querySelectorAll('#openingHours')[0];
+    const closingHours = document.querySelectorAll('#openingHours')[1];
     const address = document.getElementById('address');
     const gallery = document.getElementById('gallery');
     
-    // Verificar se os elementos foram encontrados
-    if (!addButton || !imageInput || !gallery) {
-        console.error('Elementos necessários não encontrados no DOM');
-        return;
-    }
-    
-    // Inicializar o modal (se bootstrap estiver disponível)
-    const mensagemModalElement = document.getElementById('mensagemModal');
-    let mensagemModal;
-    
-    if (window.bootstrap && mensagemModalElement) {
-        mensagemModal = new bootstrap.Modal(mensagemModalElement);
-    }
-    
+    const mensagemModal = new bootstrap.Modal(document.getElementById('mensagemModal'));
     const mensagemModalBody = document.getElementById('mensagemModalBody');
     const mensagemModalLabel = document.getElementById('mensagemModalLabel');
-    
-    // Função para mostrar mensagem
+    const qrCodeModal = new bootstrap.Modal(document.getElementById('qrCodeModal'));
+
     function mostrarMensagem(mensagem, tipo = 'erro') {
-        if (mensagemModalBody && mensagemModalLabel) {
-            mensagemModalBody.textContent = mensagem;
-            
-            if (tipo === 'sucesso') {
-                mensagemModalLabel.textContent = 'Sucesso';
-                mensagemModalLabel.style.color = '#693B11';
-            } else if (tipo === 'info') {
-                mensagemModalLabel.textContent = 'Informação';
-                mensagemModalLabel.style.color = '#693B11';
-            } else {
-                mensagemModalLabel.textContent = 'Atenção';
-                mensagemModalLabel.style.color = '#693B11';
-            }
-            
-            if (mensagemModal) {
-                mensagemModal.show();
-            } else {
-                alert(mensagem); // Fallback para navegadores sem bootstrap
-            }
-        } else {
-            alert(mensagem); // Fallback para navegadores sem bootstrap
+        mensagemModalBody.textContent = mensagem;
+        mensagemModalLabel.textContent = tipo.charAt(0).toUpperCase() + tipo.slice(1);
+        mensagemModalLabel.style.color = '#693B11';
+        mensagemModal.show();
+    }
+
+    imageInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block';
+                document.querySelector('.upload-text').style.display = 'none';
+            };
+            reader.readAsDataURL(this.files[0]);
         }
-    }
-    
-    // Configurar preview da imagem
-    if (imageInput && imagePreview) {
-        imageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    imagePreview.style.display = 'block';
-                    const uploadText = document.querySelector('.upload-text');
-                    if (uploadText) {
-                        uploadText.style.display = 'none';
-                    }
-                };
-                
-                reader.readAsDataURL(this.files[0]);
-                originalFileName = this.files[0].name;
-            }
-        });
-    }
-    
-    // Limpar inputs
+    });
+
     function clearInputs() {
-        if (imageInput) imageInput.value = '';
-        if (imagePreview) {
-            imagePreview.src = '#';
-            imagePreview.style.display = 'none';
-        }
-        
-        const uploadText = document.querySelector('.upload-text');
-        if (uploadText) {
-            uploadText.style.display = 'block';
-        }
-        
-        if (localName) localName.value = '';
-        if (openingHours) openingHours.value = '';
-        if (closingHours) closingHours.value = '';
-        if (address) address.value = '';
-        
+        imageInput.value = '';
+        imagePreview.src = '#';
+        imagePreview.style.display = 'none';
+        document.querySelector('.upload-text').style.display = 'block';
+        localName.value = '';
+        openingHours.value = '';
+        closingHours.value = '';
+        address.value = '';
         editingItemId = null;
-        originalFileName = null;
-        
-        if (addButton) addButton.textContent = 'Adicionar Item';
-        if (cancelButton) cancelButton.classList.add('hidden');
+        addButton.textContent = 'Adicionar Item';
+        cancelButton.classList.add('hidden');
     }
-    
-    // Adicionar evento ao botão cancelar
-    if (cancelButton) {
-        cancelButton.addEventListener('click', clearInputs);
-    }
-    
-    // Adicionar ou atualizar item
-    if (addButton) {
-        addButton.addEventListener('click', function() {
-            // Verificar modo (edição ou adição)
-            if (editingItemId) {
-                updateItem();
-                return;
-            }
-            
-            // Validações
-            if (count >= maxItems) {
-                mostrarMensagem(`Limite de ${maxItems} itens atingido!`);
-                return;
-            }
-            
-            if (!imageInput.files || !imageInput.files[0]) {
-                mostrarMensagem('Por favor, selecione uma imagem.');
-                return;
-            }
-            
-            if (!localName.value.trim()) {
-                mostrarMensagem('Por favor, adicione o nome do local.');
-                return;
-            }
-            
-            if (!openingHours.value.trim()) {
-                mostrarMensagem('Por favor, adicione o horário de abertura.');
-                return;
-            }
-            
-            if (!closingHours.value.trim()) {
-                mostrarMensagem('Por favor, adicione o horário de fechamento.');
-                return;
-            }
-            
-            if (!address.value.trim()) {
-                mostrarMensagem('Por favor, adicione o endereço.');
-                return;
-            }
-            
-            // Criar ID único
-            const itemId = 'item-' + Date.now();
-            
-            // Nome do arquivo
-            const fileName = imageInput.files[0].name;
-            
-            // Criar elemento de galeria
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-            galleryItem.id = itemId;
-            
-            // Criar imagem
-            const img = document.createElement('img');
-            img.src = URL.createObjectURL(imageInput.files[0]);
-            
-            // Criar container de info
-            const infoDiv = document.createElement('div');
-            infoDiv.className = 'gallery-info';
-            
-            // Nome do local
-            const localSection = document.createElement('div');
-            localSection.className = 'info-section';
-            
-            const localLabel = document.createElement('div');
-            localLabel.className = 'info-label';
-            localLabel.textContent = 'Local:';
-            
-            const localValue = document.createElement('div');
-            localValue.className = 'local-value';
-            localValue.textContent = localName.value;
-            
-            localSection.appendChild(localLabel);
-            localSection.appendChild(localValue);
-            
-            // Horário de abertura
-            const hoursSection = document.createElement('div');
-            hoursSection.className = 'info-section';
-            
-            const hoursLabel = document.createElement('div');
-            hoursLabel.className = 'info-label';
-            hoursLabel.textContent = 'Horário em que abre:';
-            
-            const hoursValue = document.createElement('div');
-            hoursValue.className = 'hours-value';
-            hoursValue.textContent = openingHours.value;
-            
-            hoursSection.appendChild(hoursLabel);
-            hoursSection.appendChild(hoursValue);
-            
-            // Horário de fechamento
-            const closingHoursSection = document.createElement('div');
-            closingHoursSection.className = 'info-section';
-            
-            const closingHoursLabel = document.createElement('div');
-            closingHoursLabel.className = 'info-label';
-            closingHoursLabel.textContent = 'Horário em que fecha:';
-            
-            const closingHoursValue = document.createElement('div');
-            closingHoursValue.className = 'closing-hours-value';
-            closingHoursValue.textContent = closingHours.value;
-            
-            closingHoursSection.appendChild(closingHoursLabel);
-            closingHoursSection.appendChild(closingHoursValue);
-            
-            // Endereço
-            const addressSection = document.createElement('div');
-            addressSection.className = 'info-section';
-            
-            const addressLabel = document.createElement('div');
-            addressLabel.className = 'info-label';
-            addressLabel.textContent = 'Endereço:';
-            
-            const addressValue = document.createElement('div');
-            addressValue.className = 'address-value';
-            addressValue.textContent = address.value;
-            
-            addressSection.appendChild(addressLabel);
-            addressSection.appendChild(addressValue);
-            
-            // Adicionar seções ao container de info
-            infoDiv.appendChild(localSection);
-            infoDiv.appendChild(hoursSection);
-            infoDiv.appendChild(closingHoursSection);
-            infoDiv.appendChild(addressSection);
-            
-            // Botões de ação
-            const actionButtons = document.createElement('div');
-            actionButtons.className = 'action-buttons';
-            
-            const editButton = document.createElement('button');
-            editButton.className = 'edit-btn';
-            editButton.textContent = 'Editar';
-            editButton.addEventListener('click', function() {
-                editItem(itemId);
-            });
-            
-            const deleteButton = document.createElement('button');
-            deleteButton.className = 'delete-btn';
-            deleteButton.textContent = 'Excluir';
-            deleteButton.addEventListener('click', function() {
-                deleteItem(itemId);
-            });
-            
-            actionButtons.appendChild(editButton);
-            actionButtons.appendChild(deleteButton);
-            
-            // Montar o item completo
-            galleryItem.appendChild(img);
-            galleryItem.appendChild(infoDiv);
-            galleryItem.appendChild(actionButtons);
-            
-            // Armazenar nome do arquivo
-            galleryItem.dataset.fileName = fileName;
-            
-            // Adicionar à galeria
-            gallery.appendChild(galleryItem);
-            
-            // Atualizar contagem
-            count++;
-            const countDisplay = document.getElementById('count');
-            if (countDisplay) {
-                countDisplay.textContent = count;
-            }
-            
-            // Limpar inputs
-            clearInputs();
-            
-            // Mensagem de sucesso
-            mostrarMensagem('Item adicionado com sucesso!', 'sucesso');
-            
-            // Verificar limite
-            if (count >= maxItems) {
-                mostrarMensagem(`Limite de ${maxItems} itens atingido!`, 'info');
-                addButton.disabled = true;
-            }
+
+    cancelButton.addEventListener('click', clearInputs);
+
+    addButton.addEventListener('click', function() {
+        if (editingItemId) {
+            updateItem();
+            return;
+        }
+
+        if (count >= maxItems) {
+            mostrarMensagem(`Limite de ${maxItems} itens atingido!`);
+            return;
+        }
+
+        if (!imageInput.files[0] || !localName.value.trim() || !openingHours.value.trim() || !closingHours.value.trim() || !address.value.trim()) {
+            mostrarMensagem('Todos os campos, incluindo a imagem, são obrigatórios.');
+            return;
+        }
+
+        const itemId = 'item-' + Date.now();
+        createGalleryItem(itemId, {
+            imgSrc: URL.createObjectURL(imageInput.files[0]),
+            local: localName.value,
+            abertura: openingHours.value,
+            fechamento: closingHours.value,
+            endereco: address.value
         });
-    }
-    
-    // Função para editar item
-    function editItem(itemId) {
-        const galleryItem = document.getElementById(itemId);
-        
-        if (!galleryItem) {
-            return;
-        }
-        
-        // Salvar ID do item em edição
-        editingItemId = itemId;
-        
-        // Obter valores atuais
-        const localValue = galleryItem.querySelector('.local-value').textContent;
-        const hoursValue = galleryItem.querySelector('.hours-value').textContent;
-        const closingHoursValue = galleryItem.querySelector('.closing-hours-value').textContent;
-        const addressValue = galleryItem.querySelector('.address-value').textContent;
-        const currentImageSrc = galleryItem.querySelector('img').src;
-        
-        // Armazenar nome do arquivo
-        originalFileName = galleryItem.dataset.fileName;
-        
-        // Preencher formulário
-        localName.value = localValue;
-        openingHours.value = hoursValue;
-        closingHours.value = closingHoursValue;
-        address.value = addressValue;
-        
-        // Mostrar imagem atual
-        imagePreview.src = currentImageSrc;
-        imagePreview.style.display = 'block';
-        
-        const uploadText = document.querySelector('.upload-text');
-        if (uploadText) {
-            uploadText.style.display = 'none';
-        }
-        
-        // Scroll para o formulário
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-        
-        // Mudar botão para Atualizar
-        addButton.textContent = 'Atualizar Item';
-        
-        // Mostrar botão cancelar
-        cancelButton.classList.remove('hidden');
-        
-        // Mensagem informativa
-        mostrarMensagem('Editando item. Selecione uma nova imagem ou deixe em branco para manter a atual.', 'info');
-    }
-    
-    // Função para atualizar um item
-    function updateItem() {
-        // Validações
-        if (!localName.value.trim()) {
-            mostrarMensagem('Por favor, adicione o nome do local.');
-            return;
-        }
-        
-        if (!openingHours.value.trim()) {
-            mostrarMensagem('Por favor, adicione o horário de abertura.');
-            return;
-        }
-        
-        if (!closingHours.value.trim()) {
-            mostrarMensagem('Por favor, adicione o horário de fechamento.');
-            return;
-        }
-        
-        if (!address.value.trim()) {
-            mostrarMensagem('Por favor, adicione o endereço.');
-            return;
-        }
-        
-        // Obter o item
-        const galleryItem = document.getElementById(editingItemId);
-        
-        if (!galleryItem) {
-            return;
-        }
-        
-        // Atualizar valores
-        galleryItem.querySelector('.local-value').textContent = localName.value;
-        galleryItem.querySelector('.hours-value').textContent = openingHours.value;
-        galleryItem.querySelector('.closing-hours-value').textContent = closingHours.value;
-        galleryItem.querySelector('.address-value').textContent = address.value;
-        
-        // Atualizar imagem se necessário
-        if (imageInput.files && imageInput.files[0]) {
-            const newFileName = imageInput.files[0].name;
-            galleryItem.querySelector('img').src = URL.createObjectURL(imageInput.files[0]);
-            galleryItem.dataset.fileName = newFileName;
-        }
-        
-        // Limpar formulário
+
+        count++;
         clearInputs();
+        mostrarMensagem('Item adicionado com sucesso!', 'sucesso');
+        if (count >= maxItems) {
+            mostrarMensagem(`Limite de ${maxItems} itens atingido!`, 'info');
+            addButton.disabled = true;
+        }
+    });
+
+    function createGalleryItem(id, data) {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+        galleryItem.id = id;
+
+        // Armazenar todos os dados no dataset do elemento
+        galleryItem.dataset.local = data.local;
+        galleryItem.dataset.abertura = data.abertura;
+        galleryItem.dataset.fechamento = data.fechamento;
+        galleryItem.dataset.endereco = data.endereco;
+
+        // Gerar dados para o QR Code inicial
+        const now = new Date();
+        const validityString = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        // ESTE É O LINK QUE SERÁ USADO NO QR CODE. MUDE "https://seusite.com/confirmar" QUANDO TIVER A PÁGINA REAL
+        galleryItem.dataset.qrData = `https://seusite.com/confirmar?pontoId=${id}&validade=${validityString}`;
         
-        // Mensagem de sucesso
+        galleryItem.innerHTML = `
+            <img src="${data.imgSrc}" alt="Foto de ${data.local}">
+            <div class="gallery-info">
+                <div class="info-section">
+                    <div class="info-label">Local:</div>
+                    <div class="local-value">${data.local}</div>
+                </div>
+                <div class="info-section">
+                    <div class="info-label">Horário em que abre:</div>
+                    <div class="hours-value">${data.abertura}</div>
+                </div>
+                <div class="info-section">
+                    <div class="info-label">Horário em que fecha:</div>
+                    <div class="closing-hours-value">${data.fechamento}</div>
+                </div>
+                <div class="info-section">
+                    <div class="info-label">Endereço:</div>
+                    <div class="address-value">${data.endereco}</div>
+                </div>
+            </div>
+            <div class="action-buttons" style="margin-bottom: 10px;">
+                <button class="edit-btn">Editar</button>
+                <button class="delete-btn">Excluir</button>
+            </div>
+        `;
+
+        gallery.appendChild(galleryItem);
+        
+        // Adicionar eventos
+        galleryItem.querySelector('.edit-btn').addEventListener('click', (e) => {
+            e.stopPropagation(); // Impede que o modal de QR abra ao clicar em editar
+            editItem(id);
+        });
+
+        galleryItem.querySelector('.delete-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteItem(id);
+        });
+
+        galleryItem.addEventListener('click', () => openQrModal(id));
+    }
+
+    function openQrModal(itemId) {
+        const itemElement = document.getElementById(itemId);
+        if (!itemElement) return;
+
+        const { local, abertura, fechamento, endereco } = itemElement.dataset;
+        let qrData = itemElement.dataset.qrData;
+
+        // --- LÓGICA DE VALIDADE E ATUALIZAÇÃO DO QR CODE ---
+        const params = new URLSearchParams(qrData.split('?')[1]);
+        const validity = params.get('validade');
+        const [year, month] = validity.split('-').map(Number);
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1;
+
+        // Verifica se o QR Code expirou (mês ou ano diferente)
+        if (year < currentYear || (year === currentYear && month < currentMonth)) {
+            const newValidityString = `${currentYear}-${String(currentMonth).padStart(2, '0')}`;
+            qrData = `https://seusite.com/confirmar?pontoId=${itemId}&validade=${newValidityString}`;
+            itemElement.dataset.qrData = qrData; // Atualiza o dado no elemento
+            
+            mostrarMensagem('O QR Code foi atualizado para o mês atual.', 'info');
+        }
+
+        // --- CÁLCULO DOS DIAS RESTANTES ---
+        const qrCodeDate = new Date(year, month - 1, 1);
+        const expirationDate = new Date(qrCodeDate.getFullYear(), qrCodeDate.getMonth() + 1, 0); // Pega o último dia do mês
+        const today = new Date();
+        today.setHours(0, 0, 0, 0); // Zera a hora para comparar apenas os dias
+        
+        const timeLeft = expirationDate.getTime() - today.getTime();
+        const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
+
+
+        // --- PREENCHER O MODAL ---
+        document.getElementById('qrModalTitle').textContent = local;
+
+        const countdownEl = document.getElementById('qrCountdown');
+        if (daysLeft > 0) {
+            countdownEl.textContent = `Este QR Code expira em ${daysLeft} dia(s).`;
+            countdownEl.style.color = daysLeft <= 5 ? '#6d4c41' : '#a1887f'; 
+        } else {
+            countdownEl.textContent = 'Este QR Code expirou e será renovado.';
+            countdownEl.style.color = '#6d4c41';
+        }
+
+        document.getElementById('qrInfoContainer').innerHTML = `
+            <p><strong>Horário de Funcionamento:</strong> ${abertura} - ${fechamento}</p>
+            <p><strong>Endereço:</strong> ${endereco}</p>
+        `;
+
+        // Gerar o QR Code
+        const qrContainer = document.getElementById('qrCodeContainer');
+        qrContainer.innerHTML = ''; // Limpa o QR Code anterior
+        new QRCode(qrContainer, {
+            text: qrData,
+            width: 200,
+            height: 200,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H
+        });
+
+        qrCodeModal.show();
+    }
+
+    function editItem(itemId) {
+        editingItemId = itemId;
+        const item = document.getElementById(itemId);
+        localName.value = item.dataset.local;
+        openingHours.value = item.dataset.abertura;
+        closingHours.value = item.dataset.fechamento;
+        address.value = item.dataset.endereco;
+        
+        imagePreview.src = item.querySelector('img').src;
+        imagePreview.style.display = 'block';
+        document.querySelector('.upload-text').style.display = 'none';
+
+        addButton.textContent = 'Atualizar Item';
+        cancelButton.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateItem() {
+        if (!localName.value.trim() || !openingHours.value.trim() || !closingHours.value.trim() || !address.value.trim()) {
+            mostrarMensagem('Todos os campos são obrigatórios.');
+            return;
+        }
+
+        const item = document.getElementById(editingItemId);
+        item.dataset.local = localName.value;
+        item.dataset.abertura = openingHours.value;
+        item.dataset.fechamento = closingHours.value;
+        item.dataset.endereco = address.value;
+
+        if (imageInput.files[0]) {
+            item.querySelector('img').src = URL.createObjectURL(imageInput.files[0]);
+        }
+
+        // Atualiza a visualização na galeria
+        item.querySelector('.local-value').textContent = localName.value;
+        item.querySelector('.hours-value').textContent = openingHours.value;
+        item.querySelector('.closing-hours-value').textContent = closingHours.value;
+        item.querySelector('.address-value').textContent = address.value;
+        
+        clearInputs();
         mostrarMensagem('Item atualizado com sucesso!', 'sucesso');
     }
-    
-    // Função para excluir um item
+
     function deleteItem(itemId) {
-        // Confirmar exclusão
         if (!confirm('Tem certeza que deseja excluir este item?')) {
             return;
         }
-        
-        // Obter o item
-        const galleryItem = document.getElementById(itemId);
-        
-        if (!galleryItem) {
-            return;
-        }
-        
-        // Remover da galeria
-        galleryItem.remove();
-        
-        // Atualizar contagem
+        document.getElementById(itemId).remove();
         count--;
-        const countDisplay = document.getElementById('count');
-        if (countDisplay) {
-            countDisplay.textContent = count;
-        }
-        
-        // Se estava editando este item, limpar
         if (editingItemId === itemId) {
             clearInputs();
         }
-        
-        // Reabilitar botão se estava desabilitado
-        if (addButton.disabled) {
-            addButton.disabled = false;
-        }
-        
-        // Mensagem de sucesso
+        addButton.disabled = false;
         mostrarMensagem('Item excluído com sucesso!', 'sucesso');
     }
 }

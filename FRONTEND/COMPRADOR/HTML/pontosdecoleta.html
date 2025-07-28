@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
     <link rel="stylesheet" href="../CSS/pontosdecoleta.css" />
     <link rel="stylesheet" href="../CSS/barraheadercomprador.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="../JS/pontosdecoleta.js"></script>
   </head>
   <body>
@@ -225,6 +226,8 @@
           <button id="botao-pesquisa">Pesquisar</button>
         </div>
 
+        <div class="alinhamento">
+
         <div class="input-container" id="inputForm">
             <div class="input-image-container">
                 <label for="imageInput" class="image-input-label">
@@ -260,6 +263,8 @@
             <button id="addButton" class="button">Adicionar Item</button>
         </div>
         
+        </div>
+
         <div id="gallery" class="gallery"></div>
     
         <div class="modal fade" id="mensagemModal" tabindex="-1" aria-labelledby="mensagemModalLabel" aria-hidden="true">
@@ -284,6 +289,35 @@
               </div>
 
       </main>
+
+      <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrCodeModalLabel">Detalhes do Ponto de Coleta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4 id="qrModalTitle" class="mb-3" style="color: #693B11;"></h4>
+
+                    <div id="qrCodeContainer" class="d-flex justify-content-center mb-3">
+                        </div>
+
+                    <p id="qrCountdown" class="fw-bold"></p>
+
+                    <hr>
+
+                    <div id="qrInfoContainer" class="text-start">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-marrom" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+      </div>
+      </div>
+
     </div>
 
 

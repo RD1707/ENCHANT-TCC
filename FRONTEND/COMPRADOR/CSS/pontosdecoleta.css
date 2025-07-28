@@ -29,6 +29,15 @@ body {
     margin-bottom: 20px;
 }
 
+.alinhamento {
+  max-width: 1200px;
+  max-width: 1200px;
+  margin: 0 auto; /* Adicionado para centralizar o próprio container na página */
+  display: flex; /* Adicionado para ativar o Flexbox */
+  flex-direction: column; /* Adicionado para empilhar os itens verticalmente */
+  align-items: center; /* Adicionado para centralizar os itens horizontalmente */
+}
+
 .input-container {
     display: flex;
     background-color: #cfac8a;
@@ -162,6 +171,49 @@ textarea {
     padding: 0 10px;
 }
 
+/* Adicionado para indicar que os itens da galeria são clicáveis */
+.gallery-item {
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilos para o conteúdo do modal de QR Code */
+#qrCodeContainer img {
+    border: 6px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: white;
+}
+
+#qrCountdown {
+    color: #3d2106; /* Um tom de vermelho para dar destaque */
+    font-size: 1rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+#qrInfoContainer p {
+    margin-bottom: 8px;
+}
+
+#qrInfoContainer strong {
+    color: #693B11;
+}
+
+.btn-marrom {
+    background-color: #693B11; /* Tom de marrom principal do seu tema */
+    color: #ffffff; /* Cor do texto branca para contraste */
+    border: none;
+}
+
+.btn-marrom:hover {
+    background-color: #542e0b; /* Um tom de marrom um pouco mais escuro para o efeito hover */
+    color: #ffffff;
+}
+
 /* Desktop - Layout em Grid (lado a lado) */
 @media (min-width: 993px) {
     .gallery {
@@ -177,19 +229,19 @@ textarea {
         padding: 15px;
         margin-bottom: 0; /* Remove margin em grid */
         border-radius: 15px;
+        margin-left: 90px;
         border: 1px solid #ddd;
         display: flex;
         width: 100%;
         align-items: flex-start;
         position: relative;
         flex-wrap: nowrap;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        max-width: 1210px;
     }
     
     .gallery-item:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
     
     .gallery-item img {
@@ -221,6 +273,7 @@ textarea {
         display: flex;
         gap: 8px;
     }
+ 
 }
 
 /* Tablet - Layout em coluna com 2 colunas */
@@ -244,7 +297,6 @@ textarea {
         width: 100%;
         align-items: center;
         position: relative;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     
     .gallery-item img {
