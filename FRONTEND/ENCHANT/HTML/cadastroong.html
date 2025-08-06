@@ -4,348 +4,214 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Doador Organização não governamental</title>
+    
     <link rel="stylesheet" href="../CSS/cadastroong.css">
     <link rel="stylesheet" href="../../COMPRADOR/CSS/headersemtransparente.css">
-    <script src="../JS/cadastroong.js"></script>
-        <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-    />
-    <link rel="stylesheet" href="https://phosphoricons.com?q=%22menu%22" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Passion+One:wght@400;700;900&display=swap" rel="stylesheet"/>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
-
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" href="https://i.ibb.co/7NybZ3W7/1.png" type="image/x-icon">
 </head>
 <body>
 
-    <section>
     <header>
       <nav id="fixado" class="navbar navbar-expand-lg navbar-light bg-light">
-        <!-- Adicionando a imagem à esquerda da navbar -->
-           <a class="navbar-brand" id="logocomprador" style="background-color: #d3d3d3; width: 150px; height: 40px;" href="compradorantes.html">
+        <a class="navbar-brand" id="logocomprador" style="background-color: #d3d3d3; width: 150px; height: 40px;" href="compradorantes.html">
         </a>
-        <button
-          id="icone"
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#conteudoNavbarSuportado"
-          aria-controls="conteudoNavbarSuportado"
-          aria-expanded="false"
-          aria-label="Alterna navegação"
-        >
+        <button id="icone" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
           <ul class="navbar-nav menu-lateral">
             <li class="nav-item">
-              <a id="quem" class="nav-link" href="../../COMPRADOR/HTML/quemsomos2antes.html" title="Quem somos"
-                >Quem somos?</a
-              >
+              <a id="quem" class="nav-link" href="#">Quem somos?</a>
             </li>
             <li class="nav-item">
-              <a id="saiba" class="nav-link" href="../../COMPRADOR/HTML/saibamais2antes.html" title="Saiba mais"
-                >Saiba mais
-              </a>
+              <a id="saiba" class="nav-link" href="#">Saiba mais</a>
             </li>
             <li class="nav-item">
-              <a id="entrar" class="nav-link" href="../../COMPRADOR/HTML/entrarcomprador.html" title="Entrar">Entrar</a>
+              <a id="entrar" class="nav-link" href="#">Entrar</a>
             </li>
             <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                title="Cadastre-se"
-              >
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cadastre-se
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a
-                  id="dona1"
-                  class="dropdown-item" title="Cadastro do donatário"
-                  href="../../ENCHANT/HTML/cadastrodonatario1.html"
-                  >Cadastro Donatário
-                </a>
-                <a
-                  id="doap"
-                  class="dropdown-item" title="Cadastro do doador-pessoa"
-                  href="../../ENCHANT/HTML/cadastrodoadorpessoa1.html"
-                  >Cadastro Doador-Pessoa
-                </a>
-                <a
-                  id="doain"
-                  class="dropdown-item" title="Cadastro do doador-instituição"
-                  href="../../ENCHANT/HTML/cadastrodoadorinstituição1.html"
-                  >Cadastro Doador Instituição</a
-                >
+                <a id="dona1" class="dropdown-item" href="#">Cadastro Donatário</a>
+                <a id="doap" class="dropdown-item" href="#">Cadastro Doador-Pessoa</a>
+                <a id="doain" class="dropdown-item" href="#">Cadastro Doador Instituição</a>
               </div>
             </li>
           </ul>
-          <!-- O botão permanece inalterado -->
-          <a href="../../COMPRADOR/HTML/entrarcomprador.html"><button class="btn btn-brown" type="button" id="doeagora">
-            Doe agora
-          </button></a>
+          <a href="#"><button class="btn btn-brown" type="button" id="doeagora">Doe agora</button></a>
         </div>
       </nav>
     </header>
-  </section>
-      <br>
-      <br>
-      <br>
+    <br><br><br>
 
 <div class="container">
+    <h1 class="titulo">Cadastro Do Doador - ONG</h1>
+    
+    <div class="passos-container">
+        <div class="passo ativo" id="passo-1">1° passo</div>
+        <div class="passo" id="passo-2">2° passo</div> 
+    </div>
 
-        
-        <h1 class="titulo">Cadastro Do Doador - ONG</h1>
-        
-        <div class="passos-container">
-            <div class="passo ativo">1° passo</div>
-           <a><div class="passo">2° passo</div></a> 
-        </div>
-
-
-<div class="formulario">
-
-<p class="aviso">Recomendamos atenção total ao preencher os dados nos campos solicitados, sendo estes sem pontos ou traços. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.</p>
-          
-    <div class="primeiro">     
-
-          <form action="verificar-js">  
-
-
-            <div class="campo">
-                <label for="nome-ong">Nome da organização não governamental (ONG): <span class="obrigatorio">*</span></label>
-                <input type="text" id="nome-ong" name="nome-ong" placeholder="ex: Nome da ONG" required>
-            </div>
-            
-            <div class="campo">
-                <label for="email">E-mail: <span class="obrigatorio">*</span></label>
-                <input type="email" id="email" name="email" placeholder="ex: nomeong@gmail.com" required>
-            </div>
-            
-            <div class="senha-container">
-                <div class="campo senha-grupo">
-                    <label for="senha">Senha: <span class="obrigatorio">*</span></label>
-                    <input type="password" id="senha" name="senha" placeholder="ex: xxxxxxxx" required>
-                    <span class="mostrar-senha">
-                        
-                    </span>
+    <div class="formulario">
+        <div class="primeiro">     
+            <p class="aviso">Recomendamos atenção total ao preencher os dados nos campos solicitados. É fundamental que as informações sejam inseridas de forma responsável, a fim de evitar fraudes.</p>
+            <form action="javascript:void(0);">  
+                <div class="campo">
+                    <label for="nome-ong">Nome da organização não governamental (ONG): <span class="obrigatorio">*</span></label>
+                    <input type="text" id="nome-ong" name="nome-ong" placeholder="ex: Nome da ONG" required>
                 </div>
                 
-                <div class="campo senha-grupo">
-                    <label for="confirma-senha">Confirme a senha: <span class="obrigatorio">*</span></label>
-                    <input type="password" id="confirma-senha" name="confirma-senha" placeholder="ex: xxxxxxxx" required>
-                    <span class="mostrar-senha">
-                       
-                    </span>
+                <div class="campo">
+                    <label for="email">E-mail: <span class="obrigatorio">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="ex: nomeong@gmail.com" required>
                 </div>
-            </div>
-            
-                    <div class="requisitos-senha">
-                        <p class="sub-sub-titulo">Sua senha deve conter:</p>
-                        <p class="requisitos-secundarios"><span class="obrigatorio">*</span> Mínimo 8 dígitos</p>
-                        <p class="requisitos-secundarios"><span class="obrigatorio">*</span> Pelo menos 2 números</p>
-                        <p class="requisitos-secundarios"><span class="obrigatorio">*</span> Pelo menos 1 caracter especial</p>
-                        <p class="requisitos-secundarios"><span class="obrigatorio">*</span> Pelo menos 1 letra MAIÚSCULA</p>
+                
+                <div class="senha-container">
+                    <div class="campo senha-grupo">
+                        <label for="senha">Senha: <span class="obrigatorio">*</span></label>
+                        <input type="password" id="senha" name="senha" placeholder="ex: xxxxxxxx" required>
                     </div>
-
-            <div class="botoes">
-               <a href="cadastroong2.html" class="botao-final"><button id="bottao">Continuar </button></a>
-           </div>
-          
-           
-      </form>
- 
-
-     <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                    </div>
-                    <div class="modal-body" id="erroSenhaModalBody">
-                        <!-- Mensagem de erro será inserida aqui -->
-                    </div>
-                    <div class="modal-footer">
-                        <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+                    
+                    <div class="campo senha-grupo">
+                        <label for="confirma-senha">Confirme a senha: <span class="obrigatorio">*</span></label>
+                        <input type="password" id="confirma-senha" name="confirma-senha" placeholder="ex: xxxxxxxx" required>
                     </div>
                 </div>
-            </div>
+                
+                <div class="requisitos-senha">
+                    <p class="sub-sub-titulo">Sua senha deve conter:</p>
+                    <p id="req-digitos"><span class="obrigatorio">*</span> Mínimo 8 dígitos</p>
+                    <p id="req-numeros"><span class="obrigatorio">*</span> Pelo menos 2 números</p>
+                    <p id="req-especial"><span class="obrigatorio">*</span> Pelo menos 1 caracter especial</p>
+                    <p id="req-maiuscula"><span class="obrigatorio">*</span> Pelo menos 1 letra MAIÚSCULA</p>
+                </div>
+
+                <div class="botoes">
+                    <button id="bottao" type="button">Continuar</button>
+                </div>
+            </form>
         </div>
-    </div>
-    
-
-    <div class="segundo">
-        <form action="">
-            <div class="container-flex">
-                <div class="final-container-1">
-                    <div class="campo final-grupo">
-                        <label for="cnpj">Cadastro Nacional da Pessoa Jurídica (CNPJ) <span class="obrigatorio">*</span></label>
-                        <input type="text" id="cnpj" name="cnpj" placeholder="ex : xxx.xxx/0001-xx" required>
-                        <span class="final-final">
-                    </div>
-                   
-                    <div class="campo">
-                        <label>Quantos meses de criação possui a ONG? </label>
-                        <input type="number" id="meses" placeholder="ex: 12">
-                    </div>
-    
-                    <div class="escolha">
-                        <p>A ONG possui alguma certificação ou prêmiação?</p>
-    
-                        <div class="container-escolha">
-                            <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-1">
-                            <label for="caixa-escolha" id="sim">Sim</label>
-                            <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-2">
-                            <label for="caixa-escolha">Não</label>
+        
+        <div class="segundo" style="display: none;">
+            <form action="javascript:void(0);">
+                <div class="container-flex">
+                    <div class="final-container-1">
+                        <div class="campo final-grupo">
+                            <label for="cnpj">Cadastro Nacional da Pessoa Jurídica (CNPJ) <span class="obrigatorio">*</span></label>
+                            <input type="text" id="cnpj" name="cnpj" placeholder="ex: 00.000.000/0001-00" required>
+                        </div>
+                       
+                        <div class="campo">
+                            <label>Quantos meses de criação possui a ONG?</label>
+                            <input type="number" id="meses" placeholder="ex: 12">
+                        </div>
+        
+                        <div class="escolha">
+                            <p>A ONG possui alguma certificação ou premiação?</p>
+                            <div class="container-escolha">
+                                <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-1">
+                                <label for="elemento-escolha-1" id="sim">Sim</label>
+                                <input type="checkbox" class="caixinha-escolha" id="elemento-escolha-2">
+                                <label for="elemento-escolha-2">Não</label>
+                            </div>
+                        </div>
+                        <div class="politica-container"> 
+                            <input type="checkbox" class="caixinha-escolha" id="termos" name="termos" required>
+                            <label for="termos">Li e aceito os termos de uso e a <a href="#" id="politica-link"><span id="politica">política de privacidade.</span></a></label>
                         </div>
                     </div>
-                    <div class="politica-container"> 
-                        <input type="checkbox" id="termos" name="termos" required>
-                        <label for="termos">Li e aceito os termos de uso e a <a href="privacidade1.html" id="politica-link"><span id="politica">política de privacidade.</span></a></label>
+                 
+                    <div class="final-container-2">
+                        <div class="campo final-grupo">
+                            <label for="telefone">Telefone:<span class="obrigatorio">*</span></label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="ex: (71) 99999-9999" required>
+                        </div>
+                        <p class="texto-certificado">Insira uma foto do prêmio ou certificado:</p>
+                        <div class="upload-container" id="upload-id">
+                            <input type="file" id="upload" name="upload" accept=".jpg, .jpeg, .png">
+                        </div>
                     </div>
                 </div>
-             
-                <div class="final-container-2">
-                    <div class="campo final-grupo">
-                        <label for="telefone">Telefone:<span class="obrigatorio">*</span></label>
-                        <input type="tel" id="telefone" name="telefone" placeholder="ex: (xx)xxxx-xxxx" required>
-                        <span class="final-final"></span>
+        
+                <div class="botoes-2">
+                    <div class="voltar">
+                        <button id="botao1" type="button">Voltar</button>
                     </div>
-                    <p class="texto-certificado">Insira uma foto do prêmio ou certificado:</p>
-                    <div class="upload-container" id="upload-id">
-                        
-                    <form action="" id="upload-form" enctype="multipart/form-data" method="post">
-                        <input type="file" id="upload" name="upload" accept=".jpg, .jpeg, .png" multiple>
-                    </form>
-                    
+        
+                    <div class="prosseguir">
+                        <button id="botao2" type="button">Cadastrar</button>
                     </div>
                 </div>
-            </div>
-    
-    
-            <div class="botoes-2">
-                <div class="voltar">
-                    <button id="botao1">voltar</button>
-                </div>
-    
-                <div class="prosseguir">
-                    <a href="inicio2.html" class="botao-final"><button id="botao2">Cadastrar</button></a>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-</div>
      
-     <footer>
-      <div class="footer-container">
-        <!-- Logo e descrição -->
-        <div class="footer-left">
-          <button class="upload-btn" id="imgfooter">
-            <label for="imgUpload"><i class="bi bi-plus" id="btnn2"></i></label>
-            <input type="file" id="imgUpload" accept="image/*" />
-          </button>
-
-
-          <p>
-            De forma alguma o site foi criado com o intuito de desviar os termos
-            relacionados à política de privacidade do cadastrante. O site está
-            disponível para toda e qualquer ajuda em relação aos contatos. O
-            site que aqui explica não aceita qualquer violência verbal, sendo
-            contra toda e qualquer atividade agressiva.
-          </p>
-          <p>© 2025 ENCHANT Brasil</p>
-        </div>
-
-
-        <!-- Links de navegação -->
-        <div class="footer-right">
-          <div class="footer-column">
-            <h3>MAIS INFORMAÇÕES</h3>
-            <a
-              href="saibamais1.html"
-              title="Conheça mais sobre o ENCHANT - clique"
-              >Conheça mais sobre o site</a
-            >
-          </div>
-          <div class="footer-column" title="PROTEÇÃO DE DADOS - clique">
-            <h3>PROTEÇÃO DE DADOS</h3>
-            <a href="politica1.html">Política de privacidade</a>
-          </div>
-          <div class="footer-column" title="ACOMPANHE NOSSAS REDES - clique">
-            <h3>ACOMPANHE NOSSAS REDES</h3>
-
-
-            <button id="botao">Instagram</button>
-            <button id="facebook">Facebook</button>
-          </div>
-        </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-left">
+        <img
+          src="https://i.postimg.cc/g0RvMKxc/2475bcce-285c-4b1b-b92b-8e3b0680fef1.png"
+          alt="Logo Enchant"
+          class="footer-logo"
+          title="Logo-Enchant"
+        />
+        <p>
+          De forma alguma o ENCHANT foi criado com o intuito de desviar
+          os termos relacionados à política de privacidade do
+          cadastrante. O site está disponível para toda e qualquer ajuda
+          em relação aos contatos. O site que aqui explica não aceita
+          qualquer violência verbal, sendo contra toda e qualquer
+          atividade agressiva.
+        </p>
+        <p>© 2025 ENCHANT Brasil</p>
       </div>
+            <div class="footer-right">
+              <div class="footer-column">
+                <h3>MAIS INFORMAÇÕES</h3>
+                <a href="#">Conheça mais sobre o site</a>
+              </div>
+              <div class="footer-column">
+                <h3>PROTEÇÃO DE DADOS</h3>
+                <a href="#">Política de privacidade</a>
+              </div>
+              <div class="footer-column">
+                <h3>ACOMPANHE NOSSAS REDES</h3>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+              </div>
+            </div>
+        </div>
     </footer>
 
-
     <div class="modal fade" id="erroSenhaModal" tabindex="-1" aria-labelledby="erroSenhaModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-              </div>
-              <div class="modal-body" id="erroSenhaModalBody">
-                  <!-- Mensagem de erro será inserida aqui -->
-              </div>
-              <div class="modal-footer">
-                  <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
-              </div>
-          </div>
-      </div>
-  </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="erroSenhaModalLabel">Atenção</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body" id="erroSenhaModalBody">
+                    </div>
+                <div class="modal-footer">
+                    <button id="botao-validar" type="button" class="btn btn-primary" data-bs-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-        <script
-          src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-          crossorigin="anonymous"
-        ></script>
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-          integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-          crossorigin="anonymous"
-        ></script>
-        <script
-          src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-          integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-          crossorigin="anonymous"
-        ></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <script src="../JS/cadastroong.js"></script>
 </body>
 </html>

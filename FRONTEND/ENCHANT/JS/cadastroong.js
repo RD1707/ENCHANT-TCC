@@ -1,44 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Elements
-    const form = document.querySelector('form');
-    const senhaInput = document.getElementById('senha');
-    const confirmaSenhaInput = document.getElementById('confirma-senha');
-    const botaoContinuar = document.getElementById('botao');
-    const cnpjInput = document.getElementById('cnpj');
-    const telefoneInput = document.getElementById('telefone');
-    const uploadInput = document.getElementById('upload');
-    const simCheckbox = document.getElementById('elemento-escolha-1');
-    const naoCheckbox = document.getElementById('elemento-escolha-2');
     const primeiraEtapa = document.querySelector('.primeiro');
     const segundaEtapa = document.querySelector('.segundo');
+    const passo1Indicador = document.getElementById('passo-1');
+    const passo2Indicador = document.getElementById('passo-2');
+    const botaoContinuar = document.getElementById('bottao');
     const botaoVoltar = document.getElementById('botao1');
     const botaoCadastrar = document.getElementById('botao2');
-    const erroSenhaModal = new bootstrap.Modal(document.getElementById('erroSenhaModal'));
-    const erroSenhaModalBody = document.getElementById('erroSenhaModalBody');
-    
-    // Password toggle elements - adding them dynamically as they're missing in HTML
+    const nomeOngInput = document.getElementById('nome-ong');
+    const emailInput = document.getElementById('email');
+    const senhaInput = document.getElementById('senha');
+    const confirmaSenhaInput = document.getElementById('confirma-senha');
+    const cnpjInput = document.getElementById('cnpj');
+    const telefoneInput = document.getElementById('telefone');
+    const termosCheckbox = document.getElementById('termos');
+    const simCheckbox = document.getElementById('elemento-escolha-1');
+    const naoCheckbox = document.getElementById('elemento-escolha-2');
     const senhaToggleElements = document.querySelectorAll('.mostrar-senha');
-    
-    senhaToggleElements.forEach(function(element) {
-   
-        element.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('input');
-            if (input.type === 'password') {
-                input.type = 'text';
-                this.innerHTML = '<i class="ph ph-eye-slash"></i>';
+
+    const requisitoDigitos = document.getElementById('req-digitos');
+    const requisitoNumeros = document.getElementById('req-numeros');
+    const requisitoEspecial = document.getElementById('req-especial');
+    const requisitoMaiuscula = document.getElementById('req-maiuscula');
+
+    let erroSenhaModal = null; 
+    const erroSenhaModalBody = document.getElementById('erroSenhaModalBody');
+
+    function mostrarErro(mensagem) {
+        if (!erroSenhaModal) {
+            const modalElement = document.getElementById('erroSenhaModal');
+            if (modalElement) {
+                erroSenhaModal = new bootstrap.Modal(modalElement);
             } else {
-                input.type = 'password';
-                this.innerHTML = '<i class="ph ph-eye"></i>';
+                console.error("Elemento do modal #erroSenhaModal não foi encontrado no DOM.");
+                alert(mensagem); 
+                return;
             }
-        });
-    });
-    
-    // Form validation functions
+        }
+        
+        if (erroSenhaModalBody) {
+            erroSenhaModalBody.innerHTML = mensagem;
+        }
+        erroSenhaModal.show();
+    }
+
     function validarEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
+        return re.test(String(email).toLowerCase());
     }
-    
+
     function validarSenha(senha) {
         const temOitoDigitos = senha.length >= 8;
         const temDoisNumeros = (senha.match(/\d/g) || []).length >= 2;
@@ -47,227 +56,156 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return {
             valido: temOitoDigitos && temDoisNumeros && temCaracterEspecial && temLetraMaiuscula,
-            temOitoDigitos,
-            temDoisNumeros,
-            temCaracterEspecial,
-            temLetraMaiuscula
+            temOitoDigitos, temDoisNumeros, temCaracterEspecial, temLetraMaiuscula
         };
     }
+
+    function validarCNPJ(cnpj) {
+        cnpj = cnpj.replace(/[^\d]+/g, '');
+        if (cnpj === '' || cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
+        let tamanho = 12, numeros = cnpj.substring(0, tamanho), digitos = cnpj.substring(12), soma = 0, pos = 5;
+        for (let i = 0; i < tamanho; i++) {
+            soma += parseInt(numeros.charAt(i)) * pos--;
+            if (pos < 2) pos = 9;
+        }
+        let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+        if (resultado !== parseInt(digitos.charAt(0))) return false;
+        tamanho = 13; numeros = cnpj.substring(0, tamanho); soma = 0; pos = 6;
+        for (let i = 0; i < tamanho; i++) {
+            soma += parseInt(numeros.charAt(i)) * pos--;
+            if (pos < 2) pos = 9;
+        }
+        resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+        if (resultado !== parseInt(digitos.charAt(1))) return false;
+        return true;
+    }
+
+    function atualizarCoresRequisitos(validacao) {
+        const corValidado = "#28a745", corPadrao = "#666";
+        if (requisitoDigitos) requisitoDigitos.style.color = validacao.temOitoDigitos ? corValidado : corPadrao;
+        if (requisitoNumeros) requisitoNumeros.style.color = validacao.temDoisNumeros ? corValidado : corPadrao;
+        if (requisitoEspecial) requisitoEspecial.style.color = validacao.temCaracterEspecial ? corValidado : corPadrao;
+        if (requisitoMaiuscula) requisitoMaiuscula.style.color = validacao.temLetraMaiuscula ? corValidado : corPadrao;
+    }
+
+    senhaInput.addEventListener('input', function() {
+        const validacao = validarSenha(this.value);
+        atualizarCoresRequisitos(validacao);
+    });
     
-    // Format inputs
-    if (cnpjInput) {
-        cnpjInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            if (value.length > 14) value = value.slice(0, 14);
-            
-            // Format as XX.XXX.XXX/XXXX-XX
-            if (value.length > 12) {
-                this.value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, "$1.$2.$3/$4-$5");
-            } else if (value.length > 8) {
-                this.value = value.replace(/^(\d{2})(\d{3})(\d{3})(\d+)$/, "$1.$2.$3/$4");
-            } else if (value.length > 5) {
-                this.value = value.replace(/^(\d{2})(\d{3})(\d+)$/, "$1.$2.$3");
-            } else if (value.length > 2) {
-                this.value = value.replace(/^(\d{2})(\d+)$/, "$1.$2");
+    cnpjInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/^(\d{2})(\d)/, '$1.$2');
+        value = value.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+        value = value.replace(/\.(\d{3})(\d)/, '.$1/$2');
+        value = value.replace(/(\d{4})(\d)/, '$1-$2');
+        e.target.value = value.slice(0, 18);
+    });
+    
+    telefoneInput.addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.replace(/^(\d{2})(\d)/, '($1) $2');
+        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+        e.target.value = value.slice(0, 15);
+    });
+
+    senhaToggleElements.forEach(function(element) {
+        element.addEventListener('click', function() {
+            const input = this.closest('.senha-grupo').querySelector('input');
+            const icon = this.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                if(icon) icon.className = 'ph ph-eye-slash';
             } else {
-                this.value = value;
+                input.type = 'password';
+                if(icon) icon.className = 'ph ph-eye';
             }
         });
-    }
-    
-    if (telefoneInput) {
-        telefoneInput.addEventListener('input', function() {
-            let value = this.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.slice(0, 11);
-            
-            // Format as (XX)XXXXX-XXXX or (XX)XXXX-XXXX
-            if (value.length > 10) {
-                this.value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1)$2-$3");
-            } else if (value.length > 6) {
-                this.value = value.replace(/^(\d{2})(\d{4})(\d+)$/, "($1)$2-$3");
-            } else if (value.length > 2) {
-                this.value = value.replace(/^(\d{2})(\d+)$/, "($1)$2");
-            } else {
-                this.value = value;
-            }
-        });
-    }
-    
-    // Mutual exclusivity for checkboxes
+    });
+
     if (simCheckbox && naoCheckbox) {
-        simCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                naoCheckbox.checked = false;
-                document.querySelector('.texto-certificado').style.display = 'block';
-                document.getElementById('upload-id').style.display = 'block';
-            } else {
-                document.querySelector('.texto-certificado').style.display = 'none';
-                document.getElementById('upload-id').style.display = 'none';
-            }
-        });
-        
-        naoCheckbox.addEventListener('change', function() {
-            if (this.checked) {
-                simCheckbox.checked = false;
-                document.querySelector('.texto-certificado').style.display = 'none';
-                document.getElementById('upload-id').style.display = 'none';
-            }
-        });
-        
-        // Initially hide certificate upload elements
-        document.querySelector('.texto-certificado').style.display = 'none';
-        document.getElementById('upload-id').style.display = 'none';
+        const textoCertificado = document.querySelector('.texto-certificado');
+        const uploadContainer = document.getElementById('upload-id');
+
+        if (textoCertificado && uploadContainer) {
+            textoCertificado.style.display = 'none';
+            uploadContainer.style.display = 'none';
+
+            simCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    naoCheckbox.checked = false;
+                    textoCertificado.style.display = 'block';
+                    uploadContainer.style.display = 'flex';
+                } else {
+                    textoCertificado.style.display = 'none';
+                    uploadContainer.style.display = 'none';
+                }
+            });
+            
+            naoCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    simCheckbox.checked = false;
+                    textoCertificado.style.display = 'none';
+                    uploadContainer.style.display = 'none';
+                }
+            });
+        }
     }
-    
-    // Multi-step form handling
-    if (botaoContinuar) {
-        botaoContinuar.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const nomeOng = document.getElementById('nome-ong').value;
-            const email = document.getElementById('email').value;
-            const senha = senhaInput.value;
-            const confirmaSenha = confirmaSenhaInput.value;
-            
-            // Validate first step
-            if (!nomeOng) {
-                mostrarErro('Por favor, preencha o nome da ONG.');
-                return;
-            }
-            
-            if (!email || !validarEmail(email)) {
-                mostrarErro('Por favor, forneça um endereço de e-mail válido.');
-                return;
-            }
-            
-            const resultadoValidacao = validarSenha(senha);
-            if (!resultadoValidacao.valido) {
-                let mensagemErro = 'Sua senha não atende aos requisitos:';
-                if (!resultadoValidacao.temOitoDigitos) mensagemErro += '<br>- Precisa ter pelo menos 8 dígitos';
-                if (!resultadoValidacao.temDoisNumeros) mensagemErro += '<br>- Precisa ter pelo menos 2 números';
-                if (!resultadoValidacao.temCaracterEspecial) mensagemErro += '<br>- Precisa ter pelo menos 1 caractere especial';
-                if (!resultadoValidacao.temLetraMaiuscula) mensagemErro += '<br>- Precisa ter pelo menos 1 letra MAIÚSCULA';
-                
-                mostrarErro(mensagemErro);
-                return;
-            }
-            
-            if (senha !== confirmaSenha) {
-                mostrarErro('As senhas não coincidem. Por favor, verifique.');
-                return;
-            }
-            
-            // If validation passes, show second step
+
+    botaoContinuar.addEventListener('click', function(e) {
+        e.preventDefault();
+        const resultadoValidacao = validarSenha(senhaInput.value);
+        let msg = [];
+
+        if (!nomeOngInput.value.trim()) msg.push('• Por favor, preencha o nome da ONG.');
+        if (!validarEmail(emailInput.value)) msg.push('• Por favor, forneça um e-mail válido.');
+        if (!resultadoValidacao.valido) {
+            let subMsg = [];
+            if (!resultadoValidacao.temOitoDigitos) subMsg.push('mínimo 8 dígitos');
+            if (!resultadoValidacao.temDoisNumeros) subMsg.push('pelo menos 2 números');
+            if (!resultadoValidacao.temCaracterEspecial) subMsg.push('pelo menos 1 caractere especial');
+            if (!resultadoValidacao.temLetraMaiuscula) subMsg.push('pelo menos 1 letra MAIÚSCULA');
+            msg.push('• Sua senha precisa ter: ' + subMsg.join(', ') + '.');
+        }
+        if (senhaInput.value !== confirmaSenhaInput.value) msg.push('• As senhas não coincidem.');
+
+        if (msg.length > 0) {
+            mostrarErro(msg.join('<br>'));
+        } else {
             primeiraEtapa.style.display = 'none';
             segundaEtapa.style.display = 'block';
-        });
-    }
-    
-    // Back button handling
+            if(passo1Indicador && passo2Indicador){
+                passo1Indicador.classList.remove('ativo');
+                passo2Indicador.classList.add('ativo');
+            }
+        }
+    });
+
     if (botaoVoltar) {
         botaoVoltar.addEventListener('click', function(e) {
             e.preventDefault();
-            primeiraEtapa.style.display = 'block';
             segundaEtapa.style.display = 'none';
+            primeiraEtapa.style.display = 'block';
+            if(passo1Indicador && passo2Indicador){
+                passo2Indicador.classList.remove('ativo');
+                passo1Indicador.classList.add('ativo');
+            }
         });
     }
-    
-    // Final form submission
+
     if (botaoCadastrar) {
         botaoCadastrar.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const cnpj = cnpjInput ? cnpjInput.value : '';
-            const telefone = telefoneInput ? telefoneInput.value : '';
-            const termosAceitos = document.getElementById('termos') ? document.getElementById('termos').checked : false;
-            
-            if (!cnpj) {
-                mostrarErro('Por favor, preencha o CNPJ da ONG.');
-                return;
-            }
-            
-            if (!telefone) {
-                mostrarErro('Por favor, forneça um número de telefone.');
-                return;
-            }
-            
-            if (!termosAceitos) {
-                mostrarErro('Você precisa aceitar os termos de uso e a política de privacidade para continuar.');
-                return;
-            }
-            
-            // If all validations pass, redirect to next page or submit form
-            window.location.href = 'inicio2.html';
-        });
-    }
-    
-    // Error message display function
-    function mostrarErro(mensagem) {
-        if (erroSenhaModalBody) {
-            erroSenhaModalBody.innerHTML = mensagem;
-            erroSenhaModal.show();
-        } else {
-            alert(mensagem);
-        }
-    }
-    
-    // File upload handling
-    if (uploadInput) {
-        uploadInput.addEventListener('change', function() {
-            const files = this.files;
-            if (files.length > 0) {
-                const uploadContainer = document.getElementById('upload-id');
-                uploadContainer.style.backgroundImage = `url(${URL.createObjectURL(files[0])})`;
-                uploadContainer.style.backgroundSize = 'cover';
-                uploadContainer.style.backgroundPosition = 'center';
+            let erros = [];
+            if (!validarCNPJ(cnpjInput.value)) erros.push('• Por favor, preencha um CNPJ válido.');
+            if (telefoneInput.value.replace(/\D/g, '').length < 10) erros.push('• Por favor, forneça um telefone válido com DDD.');
+            if (!termosCheckbox.checked) erros.push('• Você precisa aceitar os termos de uso e a política de privacidade.');
+
+            if (erros.length > 0) {
+                mostrarErro(erros.join('<br>'));
+            } else {
+                alert('Cadastro realizado com sucesso!');
             }
         });
     }
 });
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    const senhaInput = document.getElementById('senha');
-    const confirmaSenhaInput = document.getElementById('confirma-senha');
-    const botaoContinuar = document.getElementById('botao');
-    
-    const requisitosSecundarios = document.querySelectorAll('.requisitos-secundarios');
-    const requisitoDigitos = requisitosSecundarios[0];     
-    const requisitoNumeros = requisitosSecundarios[1];     
-    const requisitoEspecial = requisitosSecundarios[2];    
-    const requisitoMaiuscula = requisitosSecundarios[3];   
-    
-    if (senhaInput) {
-        senhaInput.addEventListener('input', function() {
-            const senha = this.value;
-            const validacao = validarSenha(senha);
-            
-            atualizarCoresRequisitos(validacao);
-        });
-    }
-    
-    function validarSenha(senha) {
-        const temOitoDigitos = senha.length >= 8;
-        const temDoisNumeros = (senha.match(/\d/g) || []).length >= 2;
-        const temCaracterEspecial = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
-        const temLetraMaiuscula = /[A-Z]/.test(senha);
-        
-        return {
-            valido: temOitoDigitos && temDoisNumeros && temCaracterEspecial && temLetraMaiuscula,
-            temOitoDigitos,
-            temDoisNumeros,
-            temCaracterEspecial,
-            temLetraMaiuscula
-        };
-    }
-    
-    function atualizarCoresRequisitos(validacao) {
-        const corValidado = "#28a745";  
-        const corPadrao = "#666";       
-        
-        requisitoDigitos.style.color = validacao.temOitoDigitos ? corValidado : corPadrao;
-        requisitoNumeros.style.color = validacao.temDoisNumeros ? corValidado : corPadrao;
-        requisitoEspecial.style.color = validacao.temCaracterEspecial ? corValidado : corPadrao;
-        requisitoMaiuscula.style.color = validacao.temLetraMaiuscula ? corValidado : corPadrao;
-    }
-    
-});     
